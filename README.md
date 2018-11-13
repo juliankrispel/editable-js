@@ -10,22 +10,24 @@
 npm install --save editable-js
 ```
 
+## Data Shapes
+
+```js
+type DataBlock = {
+  text: string,
+  
+}
+
+type DataTree = Array<DataBlock>
+```
+
+
+
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-
-import MyComponent from 'editable-js'
-
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+<Tree>
+  
+</Tree>
 ```
 
-## License
-
-MIT © [juliankrispel](https://github.com/juliankrispel)

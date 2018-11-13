@@ -2,13 +2,15 @@
   "parser": "babel-eslint",
   "extends": [
     "standard",
-    "standard-react"
+    "standard-react",
+    "plugin:flowtype/recommended"
   ],
   "env": {
     "es6": true
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "parserOptions": {
     "sourceType": "module",
