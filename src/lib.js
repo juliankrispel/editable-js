@@ -32,8 +32,9 @@ export const insertText = (
   return editorState
 }
 
-export const replaceText = (editorState: EditorState, selection: SelectionState): EditorState => {
-  return editorState
+export const replaceText = (editorState: EditorState, selection: SelectionState, text: string): EditorState => {
+  const newEditorState = removeRange(editorState, editorState.selection)
+  return insertText(newEditorState, newEditorState.selection, text)
 }
 
 export const removeRange = (editorState: EditorState, selection: SelectionState): EditorState => {
@@ -43,9 +44,15 @@ export const removeRange = (editorState: EditorState, selection: SelectionState)
   const startIndex = keys.indexOf(startKey)
   const endIndex = keys.indexOf(endKey)
 
-  const newContent = content.filter((leaf, index) => index < startIndex || endIndex > index)
-  newContent[startIndex].value = newContent[startIndex].value.slice(0, startOffset)
-  newContent[endIndex].value = newContent[endIndex].value.slice(0, endOffset)
+  const newContent = content.filter((leaf, index) => index <= startIndex || endIndex <= index)
+
+  if (selection.startKey === selection.endKey) {
+    const { value } = newContent[startIndex]
+    newContent[startIndex].value = value.slice(0, startOffset) + value.slice(endOffset)
+  } else {
+    newContent[startIndex].value = newContent[startIndex].value.slice(0, startOffset) + newContent[endIndex].value.slice(endOffset)
+    newContent.pop(endIndex)
+  }
 
   return {
     content: newContent,
@@ -86,12 +93,14 @@ export const getSelection = ({ content }: EditorState): SelectionState => {
     endOffset = anchorOffset
   }
 
-  return {
+  const selection = {
     startOffset,
     endOffset,
     startKey,
     endKey
   }
+
+  return selection
 }
 
 export const isCollapsed = (selection: SelectionState): boolean =>

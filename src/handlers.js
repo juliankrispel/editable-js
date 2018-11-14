@@ -1,6 +1,6 @@
 // @flow
 
-import { removeRange, isCollapsed, getLeaf, insertText, getLeafBefore, getLeafAfter } from './lib'
+import { removeRange, replaceText, isCollapsed, getLeaf, insertText, getLeafBefore, getLeafAfter } from './lib'
 import type { EditorState } from './types'
 
 export const handleBackspace = (editorState: EditorState): EditorState => {
@@ -62,13 +62,20 @@ export const handleDelete = (editorState: EditorState): EditorState => {
   return removeRange(editorState, selection)
 }
 
+const isCharacterInsert = (e: SyntheticKeyboardEvent<*>) =>
+  !e.key.includes('Arrow') && !['BackSpace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab'].includes(e.key)
+
 export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboardEvent<*>): EditorState => {
+  console.log('event.key', event.key)
+
   if (event.key === 'Backspace') {
     return handleBackspace(editorState)
   } else if (event.key === 'Delete') {
     return handleDelete(editorState)
-  } else if (event.metaKey === false) {
+  } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
     return insertText(editorState, editorState.selection, event.key)
+  } else if (isCharacterInsert(event)) {
+    return replaceText(editorState, editorState.selection, event.key)
   }
 
   return editorState
