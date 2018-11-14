@@ -1,30 +1,52 @@
 // @flow
 
 import React, { Component, createRef } from 'react'
-import { getSelection, setDomSelection } from './lib'
+import type { Node } from 'react'
+
+import { getDomSelection, setDomSelection } from './selection'
 import { handleKeyDown } from './handlers'
-import type { EditorState, Leaf } from './types'
+import genId from './genId'
+import createEditorState from './createEditorState'
+import shallowEqual from './shallowEqual'
+import type { EditorState, Block } from './types'
 
 type Props = {
   onChange: EditorState => void,
   editorState: EditorState
 }
 
-const renderLeaf = ({ key, value, data }: Leaf) => {
-  if (typeof value === 'string') {
-    return <div key={key} data-leaf-key={key}>{value}</div>
-  } else if (Array.isArray(value)) {
-    return <div key={key} data-leaf-key={key}>{value.map(renderLeaf)}</div>
-  } else {
-    throw new Error(`leaf value not implemented ${JSON.stringify(value, null, 2)}`)
-  }
+const editorStyles = {
+  whiteSpace: 'pre-wrap',
+  overflowWrap: 'break-word',
+  userSelect: 'text',
+  outline: 'none'
 }
 
-export class Editor extends Component<Props> {
+const blockStyles = {
+  outline: 'none',
+  userSelect: 'text',
+  whiteSpace: 'pre-wrap',
+  display: 'block',
+  position: 'relative',
+  overflowWrap: 'break-word'
+}
+
+const renderBlock = ({ key, value, data }: Block): Node => {
+  const textNode = value || <br />
+
+  if (typeof value === 'string') {
+    return <div style={blockStyles} key={key} data-block-key={key}><span>{textNode}</span></div>
+  } else if (Array.isArray(value)) {
+    return <div key={key} data-block-key={key}>{value.map(renderBlock)}</div>
+  }
+
+  return null
+}
+
+class Editor extends Component<Props> {
   ref = createRef()
 
   onKeyDown = (event: SyntheticKeyboardEvent<*>): void => {
-    event.preventDefault()
     const { editorState, onChange } = this.props
     onChange(handleKeyDown(editorState, event))
   }
@@ -33,14 +55,22 @@ export class Editor extends Component<Props> {
     const { editorState } = this.props
     if (editorState.selection != null && this.ref.current != null) {
       setDomSelection(this.ref.current, this.props.editorState.selection)
+    } else {
+      console.log('editor selection is null')
     }
   }
 
-  onMouseUp = (event: SyntheticMouseEvent<*>): void => {
-    this.props.onChange({
-      ...this.props.editorState,
-      selection: getSelection(this.props.editorState)
-    })
+  handleSelectionChange = (event: SyntheticMouseEvent<*>): void => {
+    const { editorState, onChange } = this.props
+    const { selection } = editorState
+    const domSelection = getDomSelection(editorState)
+
+    if (domSelection != null && !shallowEqual(selection, domSelection)) {
+      onChange({
+        ...editorState,
+        selection: domSelection
+      })
+    }
   }
 
   render() {
@@ -48,11 +78,15 @@ export class Editor extends Component<Props> {
 
     return <div
       ref={this.ref}
-      onMouseUp={this.onMouseUp}
+      style={editorStyles}
+      onMouseUp={this.handleSelectionChange}
       suppressContentEditableWarning
       contentEditable
+      onSelect={this.handleSelectionChange}
       onKeyDown={this.onKeyDown}>
-      {content.map(renderLeaf)}
+      {content.map(renderBlock)}
     </div>
   }
 }
+
+export { createEditorState, genId, Editor }

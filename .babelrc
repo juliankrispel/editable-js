@@ -1,12 +1,12 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "modules": false
     }],
-    "stage-0",
-    "react"
+    "@babel/flow",
+    "@babel/react"
   ],
   "plugins": [
-    "external-helpers"
+    "@babel/proposal-class-properties"
   ]
 }

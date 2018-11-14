@@ -1,8 +1,13 @@
 // @flow
 
-import type { EditorState, SelectionState, Leaf } from './types'
+import type { RawBlock, EditorState, SelectionState, Block } from './types'
+import genId from './genId'
 
-/* Modifiers */
+export const createBlock = (newBlock: RawBlock): Block => ({
+  ...newBlock,
+  key: genId()
+})
+
 export const insertText = (
   editorState: EditorState,
   selection: SelectionState,
@@ -14,13 +19,14 @@ export const insertText = (
 
   const { startOffset, startKey } = selection
 
-  editorState.content = editorState.content.map(leaf => {
-    if (leaf.key === startKey && typeof leaf.value === 'string') {
-      const { value } = leaf
-      leaf.value = `${value.slice(0, startOffset)}${text}${value.slice(startOffset)}`
+  editorState.content = editorState.content.map(block => {
+    if (block.key === startKey && typeof block.value === 'string') {
+      console.log('yo', block.value, { text })
+      const { value } = block
+      block.value = `${value.slice(0, startOffset)}${text}${value.slice(startOffset)}`
     }
 
-    return leaf
+    return block
   })
 
   editorState.selection = {
@@ -40,21 +46,23 @@ export const replaceText = (editorState: EditorState, selection: SelectionState,
 export const removeRange = (editorState: EditorState, selection: SelectionState): EditorState => {
   const { content } = editorState
   const { startKey, endKey, startOffset, endOffset } = selection
-  const keys = content.map(leaf => leaf.key)
+  const keys = content.map(block => block.key)
   const startIndex = keys.indexOf(startKey)
   const endIndex = keys.indexOf(endKey)
-
-  const newContent = content.filter((leaf, index) => index <= startIndex || endIndex <= index)
+  let newContent = content
 
   if (selection.startKey === selection.endKey) {
     const { value } = newContent[startIndex]
     newContent[startIndex].value = value.slice(0, startOffset) + value.slice(endOffset)
   } else {
     newContent[startIndex].value = newContent[startIndex].value.slice(0, startOffset) + newContent[endIndex].value.slice(endOffset)
-    newContent.pop(endIndex)
+    newContent.splice(endIndex, 1)
   }
 
+  newContent = content.filter((block, index) => index <= startIndex || endIndex <= index)
+
   return {
+    ...editorState,
     content: newContent,
     selection: collapseToStart(selection)
   }
@@ -66,83 +74,86 @@ export const collapseToStart = (selection: SelectionState) => ({
   endKey: selection.startKey
 })
 
-export const getSelection = ({ content }: EditorState): SelectionState => {
-  const {
-    baseNode: { parentNode: anchorNode },
-    baseOffset: anchorOffset, focusOffset, focusNode: { parentNode: focusNode }
-  } = window.getSelection()
+export const splitBlock = (editorState: EditorState): EditorState => {
+  let newEditorState = editorState
 
-  const anchorKey = anchorNode.dataset.leafKey
-  const focusKey = focusNode.dataset.leafKey
-
-  const keys = content.map(node => node.key)
-  const anchorIndex = keys.indexOf(anchorKey)
-  const focusIndex = keys.indexOf(focusKey)
-
-  let startOffset = anchorOffset
-  let endOffset = focusOffset
-  let startKey = anchorKey
-  let endKey = focusKey
-
-  const reverse = anchorIndex > focusIndex
-
-  if (reverse === true) {
-    startKey = focusKey
-    endKey = anchorKey
-    startOffset = focusOffset
-    endOffset = anchorOffset
+  if (!isCollapsed(newEditorState.selection)) {
+    newEditorState = removeRange(newEditorState, newEditorState.selection)
   }
 
-  const selection = {
-    startOffset,
-    endOffset,
-    startKey,
-    endKey
+  const { startOffset, endOffset } = newEditorState.selection
+
+  const blockToSplit = getBlockFor(newEditorState, newEditorState.selection.startKey)
+
+  if (blockToSplit == null) {
+    return editorState
   }
 
-  return selection
+  const textBefore = blockToSplit.value.slice(0, startOffset)
+  const textAfter = blockToSplit.value.slice(endOffset)
+
+  const newBlock = createBlock({ ...blockToSplit, value: textAfter })
+
+  newEditorState = updateBlock(newEditorState, blockToSplit.key, { value: textBefore })
+  newEditorState = insertBlockAfter(newEditorState, newBlock)
+
+  newEditorState.selection = {
+    startKey: newBlock.key,
+    endKey: newBlock.key,
+    startOffset: 0,
+    endOffset: 0
+  }
+
+  return newEditorState
+}
+
+export const updateBlock = (editorState: EditorState, key: string, blockUpdate: $Shape<Block>) => {
+  const keys = editorState.content.map(block => block.key)
+  const blockIndex = keys.indexOf(key)
+
+  editorState.content[blockIndex] = {
+    ...editorState.content[blockIndex],
+    ...blockUpdate
+  }
+
+  return editorState
+}
+
+export const insertBlockBefore = (editorState: EditorState, block: Block): EditorState => {
+  const { content, selection } = editorState
+  const keys = content.map(block => block.key)
+  const blockIndex = keys.indexOf(selection.endKey)
+
+  return {
+    ...editorState,
+    content: content.slice(0, blockIndex)
+      .concat([block]).concat(content.slice(blockIndex)),
+    selection
+  }
+}
+
+export const insertBlockAfter = (editorState: EditorState, block: Block): EditorState => {
+  const { content, selection } = editorState
+  const keys = content.map(block => block.key)
+  const blockIndex = keys.indexOf(selection.endKey)
+
+  return {
+    ...editorState,
+    content: content.slice(0, blockIndex + 1)
+      .concat([block]).concat(content.slice(blockIndex + 1)),
+    selection
+  }
 }
 
 export const isCollapsed = (selection: SelectionState): boolean =>
   selection.startOffset === selection.endOffset &&
   selection.startKey === selection.endKey
 
-const findTextChild = (el: ?Node): ?Node => {
-  if (el == null) {
-    return null
-  }
+export const getBlockFor = ({ content }: EditorState, key: string): ?Block =>
+  content.find(block => block.key === key)
 
-  return Array.from(el.childNodes).find(child => {
-    if (child.nodeName === '#text') {
-      return child
-    } else if (child.childNodes.length > 0) {
-      return findTextChild(child)
-    }
-  })
-}
+export const getBlockBefore = ({ content }: EditorState, key: string): ?Block =>
+  content[content.map(block => block.key).indexOf(key) - 1]
 
-export const getLeaf = ({ content }: EditorState, key: string): ?Leaf =>
-  content.find(leaf => leaf.key === leaf)
-
-export const getLeafBefore = ({ content }: EditorState, key: string): ?Leaf =>
-  content[content.map(leaf => leaf.key).indexOf(key) - 1]
-
-export const getLeafAfter = ({ content }: EditorState, key: string): ?Leaf =>
-  content[content.map(leaf => leaf.key).indexOf(key) + 1]
-
-export const setDomSelection = (
-  containerNode: HTMLElement,
-  { startOffset, endOffset, startKey, endKey }: SelectionState
-): void => {
-  const newSelection = window.getSelection()
-  const startNode = findTextChild(containerNode.querySelector(`[data-leaf-key="${startKey}"]`))
-  const endNode = findTextChild(containerNode.querySelector(`[data-leaf-key="${endKey}"]`))
-  newSelection.removeAllRanges()
-  const range = document.createRange()
-
-  if (startNode != null && endNode != null) {
-    range.setStart(startNode, startOffset)
-    range.setEnd(endNode, endOffset)
-    newSelection.addRange(range)
-  }
-}
+export const getBlockAfter = ({ content }: EditorState, key: string): ?Block =>
+  content[content.map(block => block.key).indexOf(key) + 1]

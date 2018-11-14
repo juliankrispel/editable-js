@@ -1,4 +1,5 @@
 // @flow
+import type { Patch } from 'immer'
 
 export type SelectionState = {
   startOffset: number,
@@ -7,13 +8,23 @@ export type SelectionState = {
   endKey: string,
 }
 
-export type Leaf = {
+export type Block = {
   key: string,
-  value: Array<Leaf> | string,
+  value: string,
   data?: Object
 }
 
+export type ContentState = Array<Block>
+
+export type RawBlock = {
+  value: string,
+  data?: Object,
+}
+
+export type RawContentState = Array<RawBlock>
+
 export type EditorState = {
-  content: Array<Leaf>,
-  selection: SelectionState
+  content: ContentState,
+  selection: SelectionState,
+  patches: Array<[Patch, Patch]>
 }

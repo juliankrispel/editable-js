@@ -1,6 +1,16 @@
 // @flow
 
-import { removeRange, replaceText, isCollapsed, getLeaf, insertText, getLeafBefore, getLeafAfter } from './lib'
+import {
+  splitBlock,
+  removeRange,
+  replaceText,
+  isCollapsed,
+  getBlockFor,
+  insertText,
+  getBlockBefore,
+  getBlockAfter
+} from './lib'
+
 import type { EditorState } from './types'
 
 export const handleBackspace = (editorState: EditorState): EditorState => {
@@ -10,18 +20,18 @@ export const handleBackspace = (editorState: EditorState): EditorState => {
     return removeRange(editorState, selection)
   }
 
-  const leafBefore = getLeafBefore(editorState, selection.startKey)
+  const blockBefore = getBlockBefore(editorState, selection.startKey)
 
   if (selection.startOffset > 0) {
     selection = {
       ...selection,
       startOffset: selection.startOffset - 1
     }
-  } else if (leafBefore != null) {
+  } else if (blockBefore != null) {
     selection = {
       ...selection,
-      startKey: leafBefore.key,
-      startOffset: leafBefore.value.length
+      startKey: blockBefore.key,
+      startOffset: blockBefore.value.length
     }
   } else {
     return editorState
@@ -37,22 +47,22 @@ export const handleDelete = (editorState: EditorState): EditorState => {
     return removeRange(editorState, selection)
   }
 
-  const leafAfter = getLeafAfter(editorState, selection.endKey)
-  const currentLeaf = getLeaf(editorState, selection.endKey)
+  const blockAfter = getBlockAfter(editorState, selection.endKey)
+  const currentBlock = getBlockFor(editorState, selection.endKey)
 
-  if (currentLeaf == null) {
-    throw new Error('current leaf not defined')
+  if (currentBlock == null) {
+    throw new Error('current block not defined')
   }
 
-  if (selection.endOffset < currentLeaf.value.length) {
+  if (selection.endOffset < currentBlock.value.length) {
     selection = {
       ...selection,
       endOffset: selection.endOffset + 1
     }
-  } else if (leafAfter != null) {
+  } else if (blockAfter != null) {
     selection = {
       ...selection,
-      endKey: leafAfter.key,
+      endKey: blockAfter.key,
       endOffset: 0
     }
   } else {
@@ -63,19 +73,30 @@ export const handleDelete = (editorState: EditorState): EditorState => {
 }
 
 const isCharacterInsert = (e: SyntheticKeyboardEvent<*>) =>
-  !e.key.includes('Arrow') && !['BackSpace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab'].includes(e.key)
+  !e.altKey &&
+  !e.metaKey &&
+  !e.ctrlKey &&
+  !e.key.includes('Arrow') &&
+  !['BackSpace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab'].includes(e.key)
 
 export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboardEvent<*>): EditorState => {
-  console.log('event.key', event.key)
+  let newEditorState = null
 
   if (event.key === 'Backspace') {
-    return handleBackspace(editorState)
+    newEditorState = handleBackspace(editorState)
+  } else if (event.key === 'Enter') {
+    newEditorState = splitBlock(editorState)
   } else if (event.key === 'Delete') {
-    return handleDelete(editorState)
+    newEditorState = handleDelete(editorState)
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
-    return insertText(editorState, editorState.selection, event.key)
+    newEditorState = insertText(editorState, editorState.selection, event.key)
   } else if (isCharacterInsert(event)) {
-    return replaceText(editorState, editorState.selection, event.key)
+    newEditorState = replaceText(editorState, editorState.selection, event.key)
+  }
+
+  if (newEditorState != null) {
+    event.preventDefault()
+    return newEditorState
   }
 
   return editorState

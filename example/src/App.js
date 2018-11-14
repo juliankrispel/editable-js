@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import { Editor } from 'editable-js'
+import { Editor, createEditorState } from 'editable-js'
 
 export default class App extends Component {
   state = {
-    editorState: {
-      content: [{
-        key: '1',
-        value: 'One'
-      }, {
-        key: '2',
-        value: 'Two'
-      }]
-    }
+    editorState: createEditorState([{
+      value: 'One'
+    }, {
+      value: 'Two'
+    }])
   }
 
- render () {
+  render () {
     return (
       <Editor
         onChange={editorState => {
