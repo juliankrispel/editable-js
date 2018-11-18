@@ -2,6 +2,7 @@
 
 import genId from './genId'
 import type { RawContentState, EditorState } from './types'
+import produce from 'immer'
 
 const createEditorState = (rawContent: RawContentState): EditorState => {
   const content = rawContent.map(block => ({
@@ -17,11 +18,16 @@ const createEditorState = (rawContent: RawContentState): EditorState => {
     endOffset: 0
   }
 
-  return {
-    content,
-    selection,
-    changes: []
-  }
+  const initialState = produce({},
+    () => ({
+      content,
+      selection,
+      changes: [],
+      changeIndex: 0,
+      lastCommitted: null
+    }))
+
+  return initialState
 }
 
 export default createEditorState

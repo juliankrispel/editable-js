@@ -31,7 +31,9 @@ export type EditorState = {
   changes: Array<{
     redo: Array<Patch>,
     undo: Array<Patch>,
-  }>
+  }>,
+  changeIndex: number,
+  lastCommitted: ?string
 }
 
 type CharacterRange = {

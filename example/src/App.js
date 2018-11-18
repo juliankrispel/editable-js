@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <Editor
         onChange={editorState => {
-          console.log('yo', editorState)
+          console.log('Editor.props.onChange', editorState)
           this.setState({ editorState })
         }}
         editorState={this.state.editorState}

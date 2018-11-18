@@ -11,6 +11,8 @@ import {
   getBlockAfter
 } from './mutations'
 import commit from './commit'
+import undo from './undo'
+import redo from './redo'
 
 import type { EditorState } from './types'
 
@@ -82,10 +84,17 @@ const isCharacterInsert = (e: SyntheticKeyboardEvent<*>) =>
   !e.key.includes('Arrow') &&
   !['BackSpace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab'].includes(e.key)
 
+const isUndo = (e: SyntheticKeyboardEvent<*>) => !e.shiftKey && e.metaKey && e.key === 'z'
+const isRedo = (e: SyntheticKeyboardEvent<*>) => e.shiftKey && e.metaKey && e.key === 'z'
+
 export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboardEvent<*>): EditorState => {
   let newEditorState = null
 
-  if (event.key === 'Backspace') {
+  if (isUndo(event)) {
+    newEditorState = undo(editorState)
+  } else if (isRedo(event)) {
+    newEditorState = redo(editorState)
+  } else if (event.key === 'Backspace') {
     newEditorState = commit(editorState, handleBackspace)
   } else if (event.key === 'Enter') {
     newEditorState = commit(editorState, splitBlock, editorState.selection)
@@ -94,7 +103,7 @@ export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboard
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
     newEditorState = commit(editorState, insertText, event.key)
   } else if (isCharacterInsert(event)) {
-    newEditorState = replaceText(editorState, editorState.selection, event.key)
+    newEditorState = commit(editorState, replaceText, editorState.selection, event.key)
   }
 
   if (newEditorState != null) {
