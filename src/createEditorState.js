@@ -1,8 +1,8 @@
 // @flow
 
-import genId from './genId'
-import type { RawContentState, EditorState } from './types'
 import produce from 'immer'
+import type { RawContentState, EditorState } from './types'
+import { createBlock } from './mutations'
 
 const emptyState = {
   content: [],
@@ -18,10 +18,7 @@ const emptyState = {
 }
 
 const createEditorState = (rawContent: RawContentState): EditorState => {
-  const content = rawContent.map(block => ({
-    ...block,
-    key: genId()
-  }))
+  const content = rawContent.map(createBlock)
 
   const key = content[0].key
   const selection = {

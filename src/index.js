@@ -31,13 +31,13 @@ const blockStyles = {
   overflowWrap: 'break-word'
 }
 
-const renderBlock = ({ key, value, data }: Block): Node => {
-  const textNode = value || <br />
+const renderBlock = ({ key, text, data }: Block): Node => {
+  const textNode = text || <br />
 
-  if (typeof value === 'string') {
+  if (typeof text === 'string') {
     return <div style={blockStyles} key={key} data-block-key={key}><span>{textNode}</span></div>
-  } else if (Array.isArray(value)) {
-    return <div key={key} data-block-key={key}>{value.map(renderBlock)}</div>
+  } else if (Array.isArray(text)) {
+    return <div key={key} data-block-key={key}>{text.map(renderBlock)}</div>
   }
 
   return null

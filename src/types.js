@@ -9,19 +9,32 @@ export type SelectionState = {
   endKey: string
 }
 
+export type CharacterData = Array<{
+  type: string,
+  [string]: any
+}>
+
 export type Block = {
   key: string,
-  value: string,
+  text: string,
+  characterData: Array<CharacterData>,
   data?: Object,
   parent?: string
 }
 
 export type ContentState = Array<Block>
 
+export type CharacterRange = {
+  start: number,
+  offset: number,
+  [string]: any
+}
+
 export type RawBlock = {
-  value: string,
+  text: string,
   data?: Object,
-  parent?: string
+  parent?: string,
+  characterRanges?: Array<CharacterRange>
 }
 
 export type RawContentState = Array<RawBlock>
@@ -37,19 +50,3 @@ export type EditorState = {
   lastCommitted: ?string
 }
 
-type CharacterRange = {
-  start: number,
-  offset: number,
-  [string]: any
-}
-
-type CharacterData = Array<{
-  [string]: any
-}>
-
-type NewBlock = {
-  key: string,
-  text: string,
-  characterData: Array<CharacterData>,
-  data?: Object
-}

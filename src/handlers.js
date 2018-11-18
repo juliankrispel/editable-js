@@ -36,7 +36,7 @@ export const handleBackspace = (editorState: EditorState): void => {
     selection = {
       ...selection,
       startKey: blockBefore.key,
-      startOffset: blockBefore.value.length
+      startOffset: blockBefore.text.length
     }
   } else {
     return
@@ -58,7 +58,7 @@ export const handleDelete = (editorState: EditorState): void => {
     throw new Error('current block not defined')
   }
 
-  if (selection.endOffset < currentBlock.value.length) {
+  if (selection.endOffset < currentBlock.text.length) {
     selection.endOffset = selection.endOffset
   } else if (blockAfter != null) {
     selection.endKey = blockAfter.key

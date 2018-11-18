@@ -5,12 +5,13 @@ import genId from './genId'
 
 export const createBlock = (newBlock: RawBlock): Block => ({
   ...newBlock,
+  characterData: Array(newBlock.text.length).fill([]),
   key: genId()
 })
 
 export const insertText = (
   editorState: EditorState,
-  text: string
+  _text: string
 ): void => {
   const { selection } = editorState
 
@@ -21,21 +22,21 @@ export const insertText = (
   const { startOffset, startKey } = selection
 
   editorState.content.forEach(block => {
-    if (block.key === startKey && typeof block.value === 'string') {
-      const { value } = block
-      block.value = `${value.slice(0, startOffset)}${text}${value.slice(startOffset)}`
+    if (block.key === startKey && typeof block.text === 'string') {
+      const { text } = block
+      block.text = `${text.slice(0, startOffset)}${_text}${text.slice(startOffset)}`
     }
   })
 
-  const offset = selection.startOffset + text.length
+  const offset = selection.startOffset + _text.length
 
   editorState.selection.startOffset = offset
   editorState.selection.endOffset = offset
 }
 
-export const replaceText = (editorState: EditorState, selection: SelectionState, text: string): void => {
+export const replaceText = (editorState: EditorState, selection: SelectionState, _text: string): void => {
   removeRange(editorState, editorState.selection)
-  insertText(editorState, text)
+  insertText(editorState, _text)
 }
 
 export const removeRange = (editorState: EditorState, selection: SelectionState): void => {
@@ -48,10 +49,10 @@ export const removeRange = (editorState: EditorState, selection: SelectionState)
   console.log('yo, selection', selection)
 
   if (selection.startKey === selection.endKey) {
-    const { value } = content[startIndex]
-    content[startIndex].value = value.slice(0, startOffset) + value.slice(endOffset)
+    const { text } = content[startIndex]
+    content[startIndex].text = text.slice(0, startOffset) + text.slice(endOffset)
   } else {
-    content[startIndex].value = content[startIndex].value.slice(0, startOffset) + content[endIndex].value.slice(endOffset)
+    content[startIndex].text = content[startIndex].text.slice(0, startOffset) + content[endIndex].text.slice(endOffset)
     content.splice(endIndex, 1)
   }
 
@@ -83,12 +84,12 @@ export const splitBlock = (editorState: EditorState, selection: SelectionState):
     return
   }
 
-  const textBefore = blockToSplit.value.slice(0, startOffset)
-  const textAfter = blockToSplit.value.slice(endOffset)
+  const textBefore = blockToSplit.text.slice(0, startOffset)
+  const textAfter = blockToSplit.text.slice(endOffset)
 
-  const newBlock = createBlock({ ...blockToSplit, value: textAfter })
+  const newBlock = createBlock({ ...blockToSplit, text: textAfter })
 
-  updateBlock(editorState, blockToSplit.key, { value: textBefore })
+  updateBlock(editorState, blockToSplit.key, { text: textBefore })
   insertBlockAfter(editorState, newBlock)
 
   editorState.selection = {

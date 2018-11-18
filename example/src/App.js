@@ -4,9 +4,9 @@ import { Editor, createEditorState } from 'editable-js'
 export default class App extends Component {
   state = {
     editorState: createEditorState([{
-      value: 'One'
+      text: 'One'
     }, {
-      value: 'Two'
+      text: 'Two'
     }])
   }
 
