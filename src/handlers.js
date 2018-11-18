@@ -16,7 +16,7 @@ import redo from './redo'
 
 import type { EditorState } from './types'
 
-export const handleBackspace = (editorState: EditorState): EditorState => {
+export const handleBackspace = (editorState: EditorState): void => {
   let selection = {
     ...editorState.selection
   }
@@ -39,19 +39,18 @@ export const handleBackspace = (editorState: EditorState): EditorState => {
       startOffset: blockBefore.value.length
     }
   } else {
-    return editorState
+    return
   }
 
   return removeRange(editorState, selection)
 }
 
 export const handleDelete = (editorState: EditorState): void => {
-  let { selection } = editorState
-
-  if (!isCollapsed(selection)) {
-    removeRange(editorState, selection)
+  if (!isCollapsed(editorState.selection)) {
+    removeRange(editorState, editorState.selection)
   }
 
+  const { selection } = editorState
   const blockAfter = getBlockAfter(editorState, selection.endKey)
   const currentBlock = getBlockFor(editorState, selection.endKey)
 
@@ -60,16 +59,10 @@ export const handleDelete = (editorState: EditorState): void => {
   }
 
   if (selection.endOffset < currentBlock.value.length) {
-    selection = {
-      ...selection,
-      endOffset: selection.endOffset + 1
-    }
+    selection.endOffset = selection.endOffset
   } else if (blockAfter != null) {
-    selection = {
-      ...selection,
-      endKey: blockAfter.key,
-      endOffset: 0
-    }
+    selection.endKey = blockAfter.key
+    selection.endOffset = 0
   } else {
     return
   }

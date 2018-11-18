@@ -7,7 +7,7 @@ import type { EditorState } from './types'
 
 const mergeLastCommit = (editorState: EditorState) => {
   const prevEditorState = undo(undo(editorState))
-  let changes = {}
+  let changes = { forward: [], reverse: [] }
   const lastTwoChanges = editorState.changes.slice(-2)
 
   let newEditorState = produce(
@@ -33,10 +33,12 @@ const mergeLastCommit = (editorState: EditorState) => {
 
 const commit = (
   editorState: EditorState,
-  update: EditorState => void,
-  ...rest
+  update: (EditorState, ...args:Array<any>) => void,
+  ...rest: Array<any>
 ) => {
-  let changes = {}
+  let changes = { forward: [], reverse: [] }
+
+  console.log('committing', update.name)
 
   const { lastCommitted } = editorState
 
@@ -68,9 +70,7 @@ const commit = (
   )
 
   if (lastCommitted === update.name) {
-    console.log('boing', newEditorState)
     newEditorState = mergeLastCommit(newEditorState)
-    console.log('after', newEditorState)
   }
 
   return newEditorState

@@ -38,7 +38,7 @@ export const replaceText = (editorState: EditorState, selection: SelectionState,
   insertText(editorState, text)
 }
 
-export const removeRange = (editorState: EditorState, selection: SelectionState): EditorState => {
+export const removeRange = (editorState: EditorState, selection: SelectionState): void => {
   const { content } = editorState
   const { startKey, endKey, startOffset, endOffset } = selection
   const keys = content.map(block => block.key)
