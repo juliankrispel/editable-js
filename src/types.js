@@ -1,4 +1,5 @@
 // @flow
+
 import type { Patch } from 'immer'
 
 export type SelectionState = {
@@ -7,6 +8,7 @@ export type SelectionState = {
   startKey: string,
   endKey: string,
 }
+
 
 export type Block = {
   key: string,
@@ -26,5 +28,25 @@ export type RawContentState = Array<RawBlock>
 export type EditorState = {
   content: ContentState,
   selection: SelectionState,
-  patches: Array<[Patch, Patch]>
+  changes: Array<{
+    redo: Array<Patch>,
+    undo: Array<Patch>,
+  }>
+}
+
+type CharacterRange = {
+  start: number,
+  offset: number,
+  [string]: any
+}
+
+type CharacterData = Array<{
+  [string]: any
+}>
+
+type NewBlock = {
+  key: string,
+  text: string,
+  characterData: Array<CharacterData>,
+  data?: Object
 }

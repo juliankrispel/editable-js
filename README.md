@@ -2,32 +2,46 @@
 
 > A framework for rich text editing
 
-[![NPM](https://img.shields.io/npm/v/editable-js.svg)](https://www.npmjs.com/package/editable-js) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
-
-```bash
-npm install --save editable-js
-```
-
-## Data Shapes
+## Updates
 
 ```js
-type DataBlock = {
-  text: string,
-  
-}
 
-type DataTree = Array<DataBlock>
 ```
 
+## Examples
 
+### Styling text
 
-## Usage
+Whether it's styling text, or adding entities, this can be done via updating character data. This is completely agnostic.
 
 ```jsx
-<Tree>
-  
-</Tree>
+const newEditorState = update(editorState, (draftEditorState) => {
+  updateCharacterData(
+    draftEditorState,
+    selection,
+    (character, index) => ({
+      ...character,
+      style: 'BOLD'
+    })
+  )
+})
 ```
 
+### Decorators
+
+Decorators can be simply expressed at the render level
+
+```jsx
+<Editor
+  renderBlock={(block) => {
+    const { characterData } = block
+    return <div>
+    </div>
+  }}
+  renderCharacterRange={() => {
+
+  }}
+/>
+
+```

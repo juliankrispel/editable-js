@@ -9,12 +9,15 @@ import {
   insertText,
   getBlockBefore,
   getBlockAfter
-} from './lib'
+} from './mutations'
+import commit from './commit'
 
 import type { EditorState } from './types'
 
 export const handleBackspace = (editorState: EditorState): EditorState => {
-  let { selection } = editorState
+  let selection = {
+    ...editorState.selection
+  }
 
   if (!isCollapsed(selection)) {
     return removeRange(editorState, selection)
@@ -40,11 +43,11 @@ export const handleBackspace = (editorState: EditorState): EditorState => {
   return removeRange(editorState, selection)
 }
 
-export const handleDelete = (editorState: EditorState): EditorState => {
+export const handleDelete = (editorState: EditorState): void => {
   let { selection } = editorState
 
   if (!isCollapsed(selection)) {
-    return removeRange(editorState, selection)
+    removeRange(editorState, selection)
   }
 
   const blockAfter = getBlockAfter(editorState, selection.endKey)
@@ -66,10 +69,10 @@ export const handleDelete = (editorState: EditorState): EditorState => {
       endOffset: 0
     }
   } else {
-    return editorState
+    return
   }
 
-  return removeRange(editorState, selection)
+  removeRange(editorState, selection)
 }
 
 const isCharacterInsert = (e: SyntheticKeyboardEvent<*>) =>
@@ -83,13 +86,13 @@ export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboard
   let newEditorState = null
 
   if (event.key === 'Backspace') {
-    newEditorState = handleBackspace(editorState)
+    newEditorState = commit(editorState, handleBackspace)
   } else if (event.key === 'Enter') {
-    newEditorState = splitBlock(editorState)
+    newEditorState = commit(editorState, splitBlock, editorState.selection)
   } else if (event.key === 'Delete') {
-    newEditorState = handleDelete(editorState)
+    newEditorState = commit(editorState, handleDelete)
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
-    newEditorState = insertText(editorState, editorState.selection, event.key)
+    newEditorState = commit(editorState, insertText, event.key)
   } else if (isCharacterInsert(event)) {
     newEditorState = replaceText(editorState, editorState.selection, event.key)
   }

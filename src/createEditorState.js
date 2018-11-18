@@ -20,7 +20,7 @@ const createEditorState = (rawContent: RawContentState): EditorState => {
   return {
     content,
     selection,
-    patches: []
+    changes: []
   }
 }
 
