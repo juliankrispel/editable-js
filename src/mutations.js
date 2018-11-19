@@ -2,12 +2,23 @@
 
 import type { RawBlock, EditorState, SelectionState, Block } from './types'
 import genId from './genId'
+import { flattenTree } from './tree'
 
-export const createBlock = (newBlock: RawBlock): Block => ({
-  ...newBlock,
-  characterData: Array(newBlock.text.length).fill([]),
-  key: genId()
-})
+export const createBlock = (block: RawBlock): Block => {
+  const { children, ...rest } = block
+
+  const newBlock = {
+    ...rest,
+    characterData: Array(block.text.length).fill([]),
+    key: genId()
+  }
+
+  if (Array.isArray(children)) {
+    newBlock.children = children.map(createBlock)
+  }
+
+  return newBlock
+}
 
 export const insertText = (
   editorState: EditorState,
@@ -20,8 +31,10 @@ export const insertText = (
   }
 
   const { startOffset, startKey } = selection
+  const flattenedTree = flattenTree(editorState.content)
+  console.log('yo', flattenedTree.length)
 
-  editorState.content.forEach(block => {
+  flattenedTree.forEach(block => {
     if (block.key === startKey && typeof block.text === 'string') {
       const { text } = block
       block.text = `${text.slice(0, startOffset)}${_text}${text.slice(startOffset)}`

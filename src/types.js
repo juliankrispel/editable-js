@@ -19,7 +19,7 @@ export type Block = {
   text: string,
   characterData: Array<CharacterData>,
   data?: Object,
-  parent?: string
+  children?: Array<Block>
 }
 
 export type ContentState = Array<Block>
@@ -33,8 +33,8 @@ export type CharacterRange = {
 export type RawBlock = {
   text: string,
   data?: Object,
-  parent?: string,
-  characterRanges?: Array<CharacterRange>
+  characterRanges?: Array<CharacterRange>,
+  children?: Array<RawBlock>
 }
 
 export type RawContentState = Array<RawBlock>
@@ -49,4 +49,3 @@ export type EditorState = {
   changeIndex: number,
   lastCommitted: ?string
 }
-

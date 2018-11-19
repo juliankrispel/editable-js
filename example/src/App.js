@@ -4,7 +4,12 @@ import { Editor, createEditorState } from 'editable-js'
 export default class App extends Component {
   state = {
     editorState: createEditorState([{
-      text: 'One'
+      text: 'One',
+      children: [{
+        text: 'One A'
+      }, {
+        text: 'One B'
+      }]
     }, {
       text: 'Two'
     }])
