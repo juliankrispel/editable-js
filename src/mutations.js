@@ -32,7 +32,6 @@ export const insertText = (
 
   const { startOffset, startKey } = selection
   const flattenedTree = flattenTree(editorState.content)
-  console.log('yo', flattenedTree.length)
 
   flattenedTree.forEach(block => {
     if (block.key === startKey && typeof block.text === 'string') {
@@ -50,6 +49,10 @@ export const insertText = (
 export const replaceText = (editorState: EditorState, selection: SelectionState, _text: string): void => {
   removeRange(editorState, editorState.selection)
   insertText(editorState, _text)
+}
+
+export const deleteBlock = (editorState: EditorState, key: string) => {
+  editorState.content.getBlockByKey(editorState, key)
 }
 
 export const removeRange = (editorState: EditorState, selection: SelectionState): void => {

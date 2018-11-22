@@ -14,12 +14,31 @@ export type CharacterData = Array<{
   [string]: any
 }>
 
+export type Fragment = {
+  text: string,
+  type: string,
+}
+
 export type Block = {
   key: string,
   text: string,
   characterData: Array<CharacterData>,
+  type?: string,
   data?: Object,
   children?: Array<Block>
+}
+
+export type BlocksAndPaths = Array<{
+  path: Array<number>,
+  key: string,
+  block: Block
+}>
+
+export type BlockMap = {
+  [key: string]: {
+    path: Array<number>,
+    block: Block
+  }
 }
 
 export type ContentState = Array<Block>
