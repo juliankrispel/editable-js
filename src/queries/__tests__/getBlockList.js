@@ -1,9 +1,9 @@
 // @flow
 
-import createEditorState from '../../createEditorState'
-import getBlocksAndPaths from '../getBlocksAndPaths'
+import { createEditorState } from '../../create'
+import getBlockList from '../getBlockList'
 
-describe('getBlocksAndPaths', () => {
+describe('getBlockList', () => {
   test('get blocks and paths', () => {
     /*
      * Blocks:
@@ -54,13 +54,12 @@ describe('getBlocksAndPaths', () => {
       path: [0, 0, 0],
       key: content[0].children[0].children[0].key,
       block: content[0].children[0].children[0]
-    },
-    {
+    }, {
       path: [1],
       key: content[1].key,
       block: content[1]
     }]
 
-    expect(getBlocksAndPaths(content)).toEqual(expectedState)
+    expect(getBlockList(content)).toEqual(expectedState)
   })
 })

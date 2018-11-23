@@ -1,31 +1,16 @@
 // @flow
 import type { SelectionState } from '../../types'
+import { getBlockListInRange } from '../queries'
 
 export default function removeRange(
   editorState: EditorState,
   selection: SelectionState
 ) {
-  // get list of selected blocks as array
-  const blocks = getBlocksBySelection(editorState, selection)
+  // 1. get block list by selection
+  const blockList = getBlockListInRange(editorState.content, selection)
 
+  // 2. merge last into first block
 
-  // collapse
-  blocks.filter(![selection.startKey, selection.endKey].includes(block.key))
-    .forEach(block => collapseBlock(editorState, block.key))
+  // 3. collapse blocks in between start and end key in reverse
 
-  // get end block and merge it with first block
-
-  // insert children of last block at start
-
-
-  // reverse
-
-  // loop over block array
-
-  // for all children that are enclosed by selection delete
-  // and fold children into parent
-
-  // traverse blocks
-  editorState.content.map(
-  )
 }

@@ -85,6 +85,7 @@ B {
 ```
 
 ## Deleting/cutting a range
+1. Get block map
 1. Get list of blocks in range `getBlocksAndPaths()`
 2. Join the start and the end block
 3. Delete all blocks in between

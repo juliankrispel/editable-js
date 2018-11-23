@@ -2,7 +2,7 @@
 
 import produce from 'immer'
 import type { RawContentState, EditorState } from './types'
-import { createBlock } from './mutations'
+import createBlock from './createBlock'
 
 const emptyState = {
   content: [],

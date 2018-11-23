@@ -22,13 +22,13 @@ export type Fragment = {
 export type Block = {
   key: string,
   text: string,
-  characterData: Array<CharacterData>,
+  //   characterData: Array<CharacterData>,
   type?: string,
   data?: Object,
   children?: Array<Block>
 }
 
-export type BlocksAndPaths = Array<{
+export type BlockList = Array<{
   path: Array<number>,
   key: string,
   block: Block
@@ -51,6 +51,7 @@ export type CharacterRange = {
 
 export type RawBlock = {
   text: string,
+  key?: string,
   data?: Object,
   characterRanges?: Array<CharacterRange>,
   children?: Array<RawBlock>

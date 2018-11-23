@@ -1,84 +1,74 @@
 // @flow
 
-import { createEditorState } from '../../createEditorState'
+import { createEditorState } from '../../create'
 import type { SelectionState } from '../../types'
 import commit from '../../commit'
 import removeRange from '../removeRange'
 
 describe('removeRange', () => {
   test.skip('removes nested range without destroying unselected children', () => {
-  /*
-   * Blocks:
-   * A
-   *  B
-   *    C
-   *      D
-   *    E
-   *  F
-   *
-   * Selection: A, C
-   *
-   * Result:
-   *
-   * A + C
-   *  D
-   *  E
-   *  F
-   *
-   */
-
     const initialState = createEditorState([{
       text: 'start ',
+      key: '1',
       children: [{
-        // delete and fold children into parent
         text: 'One',
+        key: '2',
         children: [{
-          // delete and fold children into parent
           text: 'Two',
+          key: '3',
           children: [{
-            // delete
-            text: 'Three'
+            text: 'Three',
+            key: '4'
           }, {
-            // get last block first and merge it
             text: 'end',
+            key: '5',
             children: [
-              { text: 'Last Kid' }
+              {
+                text: 'Last Kid',
+                key: '6'
+              }
             ]
           }]
         }, {
-          text: 'Four'
+          text: 'Four',
+          key: '7'
         }]
       }, {
-        text: 'Five'
+        text: 'Five',
+        key: '8'
       }]
     }, {
-      text: 'Six'
+      text: 'Six',
+      key: '9'
     }])
 
     const selection: SelectionState = {
       startOffset: 6,
-      startKey: initialState.content[0].key,
+      startKey: '1',
       endOffset: 0,
-      endKey: initialState.content[0].children[0].children[0].children[1].key
+      endKey: '5'
     }
 
     const expectedState = createEditorState([{
       text: 'start end',
-      children: [
-        {
-          text: 'Last Kid'
-        },
-        {
-          text: 'Four'
-        }, {
-          text: 'Five'
-        }]
+      key: '1',
+      children: [{
+        text: 'Last Kid',
+        key: '6'
+      }, {
+        text: 'Four',
+        key: '7'
+      }, {
+        text: 'Five',
+        key: '8'
+      }]
     }, {
-      text: 'Six'
+      text: 'Six',
+      key: '9'
     }])
 
     const newEditorState = commit(initialState, removeRange, selection)
 
-    expect(newEditorState.content).toEqual(expectedState)
+    expect(newEditorState.content).toEqual(expectedState.content)
   })
 })

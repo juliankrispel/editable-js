@@ -38,8 +38,6 @@ const commit = (
 ) => {
   let changes = { forward: [], reverse: [] }
 
-  console.log('committing', update.name)
-
   const { lastCommitted } = editorState
 
   let newEditorState = produce(

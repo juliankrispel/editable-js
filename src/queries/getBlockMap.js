@@ -4,14 +4,15 @@ import type { BlockMap, ContentState } from '../types'
 
 export default function getBlockMap(
   content: ContentState,
-  path: Array<number> = []
+  _path: Array<number> = []
+  // ^ Only used to accumulate the path
 ): BlockMap {
   return content.reduce(
     (acc, block, index) => {
       let result = {
         ...acc,
         [block.key]: {
-          path: path.concat([index]),
+          path: _path.concat([index]),
           block
         }
       }
@@ -19,7 +20,7 @@ export default function getBlockMap(
       if (Array.isArray(block.children)) {
         result = {
           ...result,
-          ...getBlockMap(block.children, path.concat([index]))
+          ...getBlockMap(block.children, _path.concat([index]))
         }
       }
 

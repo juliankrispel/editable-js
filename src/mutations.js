@@ -1,24 +1,8 @@
 // @flow
 
-import type { RawBlock, EditorState, SelectionState, Block } from './types'
-import genId from './genId'
+import type { EditorState, SelectionState, Block } from './types'
+import { createBlock } from './create'
 import { flattenTree } from './tree'
-
-export const createBlock = (block: RawBlock): Block => {
-  const { children, ...rest } = block
-
-  const newBlock = {
-    ...rest,
-    characterData: Array(block.text.length).fill([]),
-    key: genId()
-  }
-
-  if (Array.isArray(children)) {
-    newBlock.children = children.map(createBlock)
-  }
-
-  return newBlock
-}
 
 export const insertText = (
   editorState: EditorState,

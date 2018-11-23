@@ -1,6 +1,6 @@
 // @flow
 
-import createEditorState from '../../createEditorState'
+import { createEditorState } from '../../create'
 import getBlockMap from '../getBlockMap'
 
 describe('getBlockMap', () => {
