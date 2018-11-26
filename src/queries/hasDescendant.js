@@ -7,11 +7,7 @@ export default function hasDescendant(
   content: ContentState | Block,
   key: string
 ): boolean {
-  if (
-    content == null ||
-    content.children == null ||
-    content.children.length === 0
-  ) {
+  if (content == null) {
     return false
   }
 
@@ -20,7 +16,7 @@ export default function hasDescendant(
     : getBlockMap(content.children)
 
   if (blockMap != null) {
-    return blockMap[key] != null
+    return blockMap.hasOwnProperty(key)
   }
 
   return false

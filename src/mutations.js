@@ -1,6 +1,6 @@
 // @flow
 
-import type { EditorState, SelectionState, Block } from './types'
+import type { RawBlock, EditorState, SelectionState, Block } from './types'
 import { createBlock } from './create'
 import { flattenTree } from './tree'
 

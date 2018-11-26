@@ -9,6 +9,7 @@ import getBlockListInRange from './getBlockListInRange'
 import getBlockMap from './getBlockMap'
 import getBlockMapInRange from './getBlockMapInRange'
 import getBlockParent from './getBlockParent'
+import hasDescendant from './hasDescendant'
 
 export {
   getBlock,
@@ -19,5 +20,6 @@ export {
   getBlockListInRange,
   getBlockMap,
   getBlockMapInRange,
-  getBlockParent
+  getBlockParent,
+  hasDescendant
 }

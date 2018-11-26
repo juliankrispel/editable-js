@@ -37,4 +37,13 @@ describe('mergeBlock', () => {
 
     expect(newEditorState.content).toEqual(content)
   })
+
+  test('throws if we are trying to merge block with descendant', () => {
+    expect(() => commit(
+      initialState,
+      mergeBlock,
+      '1',
+      '2'
+    )).toThrow()
+  })
 })
