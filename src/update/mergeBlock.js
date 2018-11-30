@@ -1,6 +1,6 @@
 // @flow
 
-import type { EditorState } from '../../types'
+import type { EditorState } from '../types'
 import { getBlock, hasDescendant } from '../queries'
 import deleteBlock from './deleteBlock'
 
@@ -13,6 +13,14 @@ export default function mergeBlock(
   const block = getBlock(content, blockKey)
   const targetBlock = getBlock(content, targetBlockKey)
 
+  if (block == null) {
+    throw new Error('block does not exist')
+  }
+
+  if (targetBlock == null) {
+    throw new Error('target block does not exist')
+  }
+
   if (hasDescendant(block, targetBlockKey)) {
     throw new Error('Cannot merge block into descending block')
   }
@@ -23,7 +31,7 @@ export default function mergeBlock(
 
   if (block.children != null) {
     targetBlock.children.splice(
-      targetBlock.children.length,
+      0,
       0,
       ...block.children
     )

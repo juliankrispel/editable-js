@@ -46,4 +46,22 @@ describe('mergeBlock', () => {
       '2'
     )).toThrow()
   })
+
+  test('throws if we are trying to merge block with non existent target block', () => {
+    expect(() => commit(
+      initialState,
+      mergeBlock,
+      '1',
+      '8'
+    )).toThrow()
+  })
+
+  test('throws if we are trying to merge non existent block', () => {
+    expect(() => commit(
+      initialState,
+      mergeBlock,
+      '9',
+      '2'
+    )).toThrow()
+  })
 })

@@ -11,9 +11,12 @@ export default function hasDescendant(
     return false
   }
 
-  const blockMap = Array.isArray(content)
-    ? getBlockMap(content)
-    : getBlockMap(content.children)
+  let blockMap
+  if (Array.isArray(content)) {
+    blockMap = getBlockMap(content)
+  } else if (content.children != null) {
+    blockMap = getBlockMap(content.children)
+  }
 
   if (blockMap != null) {
     return blockMap.hasOwnProperty(key)

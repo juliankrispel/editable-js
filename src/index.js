@@ -5,8 +5,7 @@ import type { Node } from 'react'
 
 import { getDomSelection, setDomSelection } from './selection'
 import { handleKeyDown } from './handlers'
-import genId from './genId'
-import createEditorState from './createEditorState'
+import { createEditorState } from './create'
 import shallowEqual from './shallowEqual'
 import type { EditorState, Block } from './types'
 
@@ -96,4 +95,4 @@ class Editor extends Component<Props> {
   }
 }
 
-export { createEditorState, genId, Editor }
+export { createEditorState, Editor }

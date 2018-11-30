@@ -9,6 +9,7 @@ export default function createBlock (block: RawBlock): Block {
   const newBlock = {
     ...rest,
     //    characterData: Array(block.text.length).fill([]),
+    children: [],
     key: key || createId()
   }
 

@@ -1,24 +1,5 @@
 // @flow
-import type { EditorState, SelectionState } from './types'
-
-const findRangeTarget = (el: ?Node): ?Node => {
-  if (el == null) {
-    return null
-  } else if (['#text', 'BR'].includes(el.nodeName)) {
-    return el
-  } else if (el.childNodes) {
-    const childNodes = Array.from(el.childNodes)
-
-    for (let i = 0; i <= childNodes.length; i++) {
-      let child = findRangeTarget(childNodes[i])
-      if (child != null) {
-        return child
-      }
-    }
-  }
-
-  return null
-}
+import type { EditorState, SelectionState } from '../types'
 
 const getBlockNode = (el: HTMLElement): ?HTMLElement => {
   if (el.dataset && el.dataset.blockKey) {
@@ -30,7 +11,7 @@ const getBlockNode = (el: HTMLElement): ?HTMLElement => {
   return null
 }
 
-export const getDomSelection = ({ content, selection }: EditorState): SelectionState => {
+export default function getDomSelection({ content, selection }: EditorState): SelectionState {
   const domSelection = window.getSelection()
 
   if (domSelection.baseNode == null) {
@@ -75,22 +56,5 @@ export const getDomSelection = ({ content, selection }: EditorState): SelectionS
     endOffset,
     startKey,
     endKey
-  }
-}
-
-export const setDomSelection = (
-  containerNode: HTMLElement,
-  { startOffset, endOffset, startKey, endKey }: SelectionState
-): void => {
-  const newSelection = window.getSelection()
-  const startNode = findRangeTarget(containerNode.querySelector(`[data-block-key="${startKey}"]`))
-  const endNode = findRangeTarget(containerNode.querySelector(`[data-block-key="${endKey}"]`))
-  newSelection.removeAllRanges()
-  const range = document.createRange()
-
-  if (startNode != null && endNode != null) {
-    range.setStart(startNode, startOffset)
-    range.setEnd(endNode, endOffset)
-    newSelection.addRange(range)
   }
 }

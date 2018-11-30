@@ -6,7 +6,7 @@ import commit from '../../commit'
 import removeRange from '../removeRange'
 
 describe('removeRange', () => {
-  test.skip('removes nested range without destroying unselected children', () => {
+  test('removes nested range without destroying unselected children', () => {
     const initialState = createEditorState([{
       text: 'start ',
       key: '1',

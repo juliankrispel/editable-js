@@ -1,6 +1,6 @@
 // @flow
 
-import type { EditorState } from '../../types'
+import type { EditorState, Block } from '../types'
 import { getBlockParent } from '../queries'
 
 export default function updateBlock(
@@ -22,10 +22,14 @@ export default function updateBlock(
       return
     }
 
-    const index = parent.children.map(
-      block => block.key
-    ).indexOf(key)
+    if (parent.children != null) {
+      const index = parent.children.map(
+        block => block.key
+      ).indexOf(key)
 
-    Object.assign(parent.children[index], blockUpdate)
+      if (index > -1 && parent.children != null) {
+        Object.assign(parent.children[index], blockUpdate)
+      }
+    }
   }
 }

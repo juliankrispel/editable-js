@@ -3,11 +3,14 @@
 import type { Block, ContentState } from '../types'
 
 export default function getBlockByPath(
-  content: ContentState,
+  content: ContentState | Block,
   path: Array<number>
 ): ?Block {
+  // $FlowFixMe - damn flow
   return path.reduce((obj, index) => {
-    if (Array.isArray(obj)) {
+    if (obj == null) {
+      return null
+    } else if (Array.isArray(obj)) {
       return obj[index]
     } else if (Array.isArray(obj.children)) {
       return obj.children[index] || null

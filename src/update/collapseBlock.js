@@ -1,6 +1,6 @@
 // @flow
 
-import type { EditorState } from '../../types'
+import type { EditorState } from '../types'
 import { getBlockParent } from '../queries'
 
 export default function collapseBlock(
@@ -15,19 +15,23 @@ export default function collapseBlock(
     return
   }
 
-  const index = parent.children.map(
-    block => block.key
-  ).indexOf(key)
+  const { children } = parent
 
-  const blockToCollapse = parent.children[index]
+  if (children) {
+    const index = children.map(
+      block => block.key
+    ).indexOf(key)
 
-  if (blockToCollapse.children) {
-    parent.children.splice(
-      index,
-      1,
-      ...blockToCollapse.children
-    )
-  } else {
-    parent.children.splice(index, 1)
+    const blockToCollapse = children[index]
+
+    if (blockToCollapse.children) {
+      children.splice(
+        index,
+        1,
+        ...blockToCollapse.children
+      )
+    } else {
+      children.splice(index, 1)
+    }
   }
 }

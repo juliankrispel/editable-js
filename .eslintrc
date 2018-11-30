@@ -7,7 +7,8 @@
     "plugin:jest/recommended"
   ],
   "env": {
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "plugins": [
     "react",

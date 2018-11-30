@@ -1,6 +1,6 @@
 // @flow
 
-import type { EditorState } from '../../types'
+import type { EditorState } from '../types'
 import { getBlockParent } from '../queries'
 
 export default function deleteBlock(
@@ -21,10 +21,14 @@ export default function deleteBlock(
       return
     }
 
-    const index = parent.children.map(
-      block => block.key
-    ).indexOf(key)
+    const { children } = parent
 
-    parent.children.splice(index, 1)
+    if (children != null) {
+      const index = children.map(
+        block => block.key
+      ).indexOf(key)
+
+      children.splice(index, 1)
+    }
   }
 }
