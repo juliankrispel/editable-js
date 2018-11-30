@@ -1,7 +1,7 @@
 // @flow
 
 import { createEditorState } from '../../create'
-import commit from '../../commit'
+import { commit } from '../../history'
 import deleteBlock from '../deleteBlock'
 
 describe('deleteBlock', () => {
@@ -62,5 +62,4 @@ describe('deleteBlock', () => {
 
     expect(newEditorState.content).toEqual(content)
   })
-
 })

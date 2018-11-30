@@ -2,7 +2,7 @@
 
 import { createEditorState } from '../../create'
 import type { SelectionState } from '../../types'
-import commit from '../../commit'
+import { commit } from '../../history'
 import removeRange from '../removeRange'
 
 describe('removeRange', () => {
@@ -65,6 +65,32 @@ describe('removeRange', () => {
     }, {
       text: 'Six',
       key: '9'
+    }])
+
+    const newEditorState = commit(initialState, removeRange, selection)
+
+    expect(newEditorState.content).toEqual(expectedState.content)
+  })
+
+  test('removes text fragments correctly', () => {
+    const initialState = createEditorState([{
+      text: 'start -----',
+      key: '1'
+    }, {
+      text: '----- end',
+      key: '2'
+    }])
+
+    const selection: SelectionState = {
+      startOffset: 5,
+      startKey: '1',
+      endOffset: 6,
+      endKey: '2'
+    }
+
+    const expectedState = createEditorState([{
+      text: 'startend',
+      key: '1'
     }])
 
     const newEditorState = commit(initialState, removeRange, selection)

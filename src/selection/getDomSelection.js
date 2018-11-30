@@ -1,5 +1,6 @@
 // @flow
 import type { EditorState, SelectionState } from '../types'
+import { getBlockMap } from '../queries'
 
 const getBlockNode = (el: HTMLElement): ?HTMLElement => {
   if (el.dataset && el.dataset.blockKey) {
@@ -33,7 +34,7 @@ export default function getDomSelection({ content, selection }: EditorState): Se
   const anchorKey = anchorNode.dataset.blockKey
   const focusKey = focusNode.dataset.blockKey
 
-  const keys = content.map(node => node.key)
+  const keys = Object.keys(getBlockMap(content))
   const anchorIndex = keys.indexOf(anchorKey)
   const focusIndex = keys.indexOf(focusKey)
 

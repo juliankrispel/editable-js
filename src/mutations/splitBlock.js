@@ -2,9 +2,9 @@
 
 import type { EditorState, SelectionState } from '../types'
 import removeRange from './removeRange'
-import { createBlock } from '../create'
 import { getBlock } from '../queries'
 import { isCollapsed } from '../selection'
+import { createBlock } from '../create'
 import updateBlock from './updateBlock'
 import insertBlockAfter from './insertBlockAfter'
 
@@ -13,9 +13,11 @@ export default function splitBlock(editorState: EditorState, selection: Selectio
     removeRange(editorState, selection)
   }
 
+  // console.log('editorState after remove range', editorState)
+  const { content } = editorState
   const { startOffset, endOffset, startKey } = selection
 
-  const blockToSplit = getBlock(editorState.content, startKey)
+  const blockToSplit = getBlock(content, startKey)
 
   if (blockToSplit == null) {
     return
@@ -24,10 +26,10 @@ export default function splitBlock(editorState: EditorState, selection: Selectio
   const textBefore = blockToSplit.text.slice(0, startOffset)
   const textAfter = blockToSplit.text.slice(endOffset)
 
-  const newBlock = createBlock({ ...blockToSplit, text: textAfter })
+  const newBlock = createBlock({ ...blockToSplit, key: null, text: textAfter })
 
-  updateBlock(editorState, blockToSplit.key, { text: textBefore })
-  insertBlockAfter(editorState, newBlock)
+  updateBlock(editorState, blockToSplit.key, { text: textBefore, children: [] })
+  insertBlockAfter(editorState, blockToSplit.key, newBlock)
 
   editorState.selection = {
     startKey: newBlock.key,

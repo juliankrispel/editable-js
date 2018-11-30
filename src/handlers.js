@@ -1,18 +1,27 @@
 // @flow
 
 import {
-  splitBlock,
+  isCollapsed
+} from './selection'
+
+import {
+  getBlockBefore,
+  getBlock,
+  getBlockAfter
+} from './queries'
+
+import {
+  insertText,
   removeRange,
   replaceText,
-  isCollapsed,
-  getBlockFor,
-  insertText,
-  getBlockBefore,
-  getBlockAfter
+  splitBlock
 } from './mutations'
-import commit from './commit'
-import undo from './undo'
-import redo from './redo'
+
+import {
+  commit,
+  undo,
+  redo
+} from './history'
 
 import type { EditorState } from './types'
 
@@ -52,7 +61,7 @@ export const handleDelete = (editorState: EditorState): void => {
 
   const { selection } = editorState
   const blockAfter = getBlockAfter(editorState, selection.endKey)
-  const currentBlock = getBlockFor(editorState, selection.endKey)
+  const currentBlock = getBlock(editorState, selection.endKey)
 
   if (currentBlock == null) {
     throw new Error('current block not defined')

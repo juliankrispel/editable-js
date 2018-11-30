@@ -1,7 +1,7 @@
 // @flow
 
 import { createEditorState } from '../../create'
-import commit from '../../commit'
+import { commit } from '../../history'
 import mergeBlock from '../mergeBlock'
 
 const initialState = createEditorState([{

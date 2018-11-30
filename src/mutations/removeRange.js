@@ -35,7 +35,11 @@ export default function removeRange(
   const last = blockList.slice(-1)[0]
   const between = blockList.slice(1, -1)
 
-  // 2. Merge first and last item
+  // 2. Delete Selected text
+  last.block.text = last.block.text.slice(selection.endOffset)
+  first.block.text = first.block.text.slice(0, selection.startOffset)
+
+  // 3. Merge first and last item
   if (blockList.length > 1) {
     mergeBlock(
       editorState,
@@ -44,6 +48,6 @@ export default function removeRange(
     )
   }
 
-  // 3. collapse blocks in between start and end key in reverse
+  // 4. collapse blocks in between start and end key in reverse
   between.reverse().forEach(block => collapseBlock(editorState, block.key))
 }
