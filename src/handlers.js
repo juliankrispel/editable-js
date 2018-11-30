@@ -34,7 +34,7 @@ export const handleBackspace = (editorState: EditorState): void => {
     return removeRange(editorState, selection)
   }
 
-  const blockBefore = getBlockBefore(editorState, selection.startKey)
+  const blockBefore = getBlockBefore(editorState.content, selection.startKey)
 
   if (selection.startOffset > 0) {
     selection = {
@@ -59,9 +59,9 @@ export const handleDelete = (editorState: EditorState): void => {
     removeRange(editorState, editorState.selection)
   }
 
-  const { selection } = editorState
-  const blockAfter = getBlockAfter(editorState, selection.endKey)
-  const currentBlock = getBlock(editorState, selection.endKey)
+  const { content, selection } = editorState
+  const blockAfter = getBlockAfter(content, selection.endKey)
+  const currentBlock = getBlock(content, selection.endKey)
 
   if (currentBlock == null) {
     throw new Error('current block not defined')
@@ -103,7 +103,7 @@ export const handleKeyDown = (editorState: EditorState, event: SyntheticKeyboard
   } else if (event.key === 'Delete') {
     newEditorState = commit(editorState, handleDelete)
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
-    newEditorState = commit(editorState, insertText, event.key)
+    newEditorState = commit(editorState, insertText, editorState.selection, event.key)
   } else if (isCharacterInsert(event)) {
     newEditorState = commit(editorState, replaceText, editorState.selection, event.key)
   }

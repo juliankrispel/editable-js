@@ -2,15 +2,15 @@
 
 import produce, { applyPatches} from 'immer'
 
-import undo from './undo'
-import type { EditorState } from './types'
+import { undo } from '../history'
+import type { EditorState } from '../types'
 
 const mergeLastCommit = (editorState: EditorState) => {
   const prevEditorState = undo(undo(editorState))
   let changes = { forward: [], reverse: [] }
   const lastTwoChanges = editorState.changes.slice(-2)
 
-  let newEditorState = produce(
+  const newEditorState = produce(
     prevEditorState,
     draft => {
       lastTwoChanges.forEach(change => {

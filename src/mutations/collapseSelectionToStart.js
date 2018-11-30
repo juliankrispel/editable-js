@@ -1,5 +1,5 @@
 // @flow
-import type { SelectionState } from './types'
+import type { SelectionState } from '../types'
 
 export default function collapseSelectionToStart(selection: SelectionState) {
   selection.endOffset = selection.startOffset

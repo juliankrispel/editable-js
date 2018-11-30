@@ -13,7 +13,10 @@ export default function insertBlockAfter(
   if (rootIndex > -1) {
     editorState.content.splice(rootIndex + 1, 0, block)
   } else if (parent != null) {
-    const blockIndex = parent.children.map(block => block.key).indexOf(blockKey)
-    parent.children.splice(blockIndex + 1, 0, block)
+    const { children } = parent
+    if (children != null) {
+      const blockIndex = children.map(block => block.key).indexOf(blockKey)
+      children.splice(blockIndex + 1, 0, block)
+    }
   }
 }

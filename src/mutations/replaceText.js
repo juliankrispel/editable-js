@@ -5,5 +5,5 @@ import insertText from './insertText'
 
 export default function replaceText(editorState: EditorState, selection: SelectionState, text: string): void {
   removeRange(editorState, editorState.selection)
-  insertText(editorState, text)
+  insertText(editorState, editorState.selection, text)
 }
