@@ -10,6 +10,9 @@ import mergeBlock from './mergeBlock'
 import removeRange from './removeRange'
 import splitBlock from './splitBlock'
 import updateBlock from './updateBlock'
+import collapseSelectionToEnd from './collapseSelectionToEnd'
+import collapseSelectionToStart from './collapseSelectionToStart'
+import updateSelection from './updateSelection'
 
 export {
   collapseBlock,
@@ -21,5 +24,8 @@ export {
   mergeBlock,
   removeRange,
   splitBlock,
-  updateBlock
+  updateBlock,
+  collapseSelectionToEnd,
+  collapseSelectionToStart,
+  updateSelection
 }

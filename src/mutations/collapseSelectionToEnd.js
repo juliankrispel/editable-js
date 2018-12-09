@@ -1,7 +1,7 @@
 // @flow
-import type { SelectionState } from '../types'
+import type { EditorState } from '../types'
 
-export default function collapseSelectionToEnd(selection: SelectionState) {
-  selection.startOffset = selection.endOffset
-  selection.startKey = selection.endKey
+export default function collapseSelectionToEnd(editorState: EditorState) {
+  editorState.selection.startOffset = editorState.selection.endOffset
+  editorState.selection.startKey = editorState.selection.endKey
 }

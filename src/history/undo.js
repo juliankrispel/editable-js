@@ -1,7 +1,7 @@
 // @flow
 
 import produce, { applyPatches } from 'immer'
-import type { EditorState } from './types'
+import type { EditorState } from '../types'
 
 const undo = (editorState: EditorState): EditorState => {
   const { changeIndex, changes } = editorState

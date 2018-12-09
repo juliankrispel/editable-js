@@ -6,8 +6,15 @@ import { commit } from '../../history'
 import removeRange from '../removeRange'
 
 describe('removeRange', () => {
-  test('removes nested range without destroying unselected children', () => {
-    const initialState = createEditorState([{
+  describe('when selection starts at parent block and ends at child block ', () => {
+    const selection: SelectionState = {
+      startOffset: 6,
+      startKey: '1',
+      endOffset: 0,
+      endKey: '5'
+    }
+
+    const initialState = [{
       text: 'start ',
       key: '1',
       children: [{
@@ -40,39 +47,45 @@ describe('removeRange', () => {
     }, {
       text: 'Six',
       key: '9'
-    }])
+    }]
 
-    const selection: SelectionState = {
-      startOffset: 6,
-      startKey: '1',
-      endOffset: 0,
-      endKey: '5'
-    }
+    const newEditorState = commit(createEditorState(initialState), removeRange, selection)
 
-    const expectedState = createEditorState([{
-      text: 'start end',
-      key: '1',
-      children: [{
-        text: 'Last Kid',
-        key: '6'
+    test('removes correct content', () => {
+      const expectedState = createEditorState([{
+        text: 'start end',
+        key: '1',
+        children: [{
+          text: 'Last Kid',
+          key: '6'
+        }, {
+          text: 'Four',
+          key: '7'
+        }, {
+          text: 'Five',
+          key: '8'
+        }]
       }, {
-        text: 'Four',
-        key: '7'
-      }, {
-        text: 'Five',
-        key: '8'
-      }]
-    }, {
-      text: 'Six',
-      key: '9'
-    }])
+        text: 'Six',
+        key: '9'
+      }])
 
-    const newEditorState = commit(initialState, removeRange, selection)
+      expect(newEditorState.content).toEqual(expectedState.content)
+    })
 
-    expect(newEditorState.content).toEqual(expectedState.content)
+    test('collapses selection', () => {
+      const expectedSelection = {
+        startOffset: 6,
+        startKey: '1',
+        endOffset: 6,
+        endKey: '1'
+
+      }
+      expect(newEditorState.selection).toEqual(expectedSelection)
+    })
   })
 
-  test('removes text fragments correctly', () => {
+  describe('when selection starts and ends at sibling', () => {
     const initialState = createEditorState([{
       text: 'start -----',
       key: '1'
@@ -88,13 +101,63 @@ describe('removeRange', () => {
       endKey: '2'
     }
 
-    const expectedState = createEditorState([{
-      text: 'startend',
+    test('removes text fragments over multiple blocks correctly', () => {
+      const expectedState = createEditorState([{
+        text: 'startend',
+        key: '1'
+      }])
+
+      const newEditorState = commit(initialState, removeRange, selection)
+
+      expect(newEditorState.content).toEqual(expectedState.content)
+    })
+
+    test('collapses selection to start', () => {
+      const expectedSelection = {
+        startOffset: 5,
+        startKey: '1',
+        endOffset: 5,
+        endKey: '1'
+      }
+
+      const newEditorState = commit(initialState, removeRange, selection)
+      expect(newEditorState.selection).toEqual(expectedSelection)
+    })
+  })
+
+  describe('when selection starts and ends in same block', () => {
+    const initialState = createEditorState([{
+      text: '0,1,A,2',
       key: '1'
     }])
 
+    const selection: SelectionState = {
+      startOffset: 4,
+      startKey: '1',
+      endOffset: 6,
+      endKey: '1'
+    }
+
     const newEditorState = commit(initialState, removeRange, selection)
 
-    expect(newEditorState.content).toEqual(expectedState.content)
+    test('updates content correctly', () => {
+      const expectedState = createEditorState([{
+        text: '0,1,2',
+        key: '1'
+      }])
+
+      expect(newEditorState.content).toEqual(expectedState.content)
+    })
+
+    test('collapses selection', () => {
+      const expectedSelection = {
+        startOffset: 4,
+        startKey: '1',
+        endOffset: 4,
+        endKey: '1'
+      }
+
+      expect(newEditorState.selection).toEqual(expectedSelection)
+    })
   })
 })

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleBackspace when selection is not collapsed collapses selection to start 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 4,
+  "startKey": "1",
+  "startOffset": 4,
+}
+`;
+
+exports[`handleBackspace when selection is not collapsed removes range 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Lineo",
+  },
+]
+`;

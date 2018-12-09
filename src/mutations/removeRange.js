@@ -3,6 +3,7 @@ import type { EditorState, SelectionState } from '../types'
 import { getBlockListInRange, getBlock } from '../queries'
 import updateBlock from './updateBlock'
 import mergeBlock from './mergeBlock'
+import collapseSelectionToStart from './collapseSelectionToStart'
 import collapseBlock from './collapseBlock'
 
 export default function removeRange(
@@ -16,12 +17,17 @@ export default function removeRange(
     selection.startKey === selection.endKey &&
     selection.startOffset !== selection.endOffset
   ) {
+    const text = startBlock.text.slice(0, selection.startOffset) +
+          startBlock.text.slice(selection.endOffset, startBlock.text.length)
+
+    Object.assign(editorState.selection, selection)
+    collapseSelectionToStart(editorState)
+
     updateBlock(
       editorState,
       selection.startKey,
       {
-        text: startBlock.text.slice(0, selection.startOffset) +
-          startBlock.text.slice(selection.endOffset, startBlock.text.length)
+        text
       }
     )
 
@@ -50,4 +56,8 @@ export default function removeRange(
 
   // 4. collapse blocks in between start and end key in reverse
   between.reverse().forEach(block => collapseBlock(editorState, block.key))
+
+  // 5. Clean up selection
+  Object.assign(editorState.selection, selection)
+  collapseSelectionToStart(editorState)
 }

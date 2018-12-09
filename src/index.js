@@ -4,7 +4,7 @@ import React, { Component, createRef } from 'react'
 import type { Node } from 'react'
 
 import { getDomSelection, setDomSelection } from './selection'
-import { handleKeyDown } from './handlers'
+import handleKeyDown from './handleKeyDown'
 import { createEditorState } from './create'
 import shallowEqual from './shallowEqual'
 import type { EditorState, Block } from './types'

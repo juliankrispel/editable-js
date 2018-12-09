@@ -27,7 +27,7 @@ const mergeLastCommit = (editorState: EditorState) => {
       draft.changes.pop()
       draft.changes[draft.changes.length - 1] = changes
       draft.changeIndex = draft.changes.length
-    }
+    }, () => {}
   )
 }
 
