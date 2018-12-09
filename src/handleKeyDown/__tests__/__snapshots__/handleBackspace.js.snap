@@ -3,12 +3,82 @@
 exports[`handleBackspace when selection is collapsed and at beginning of the document editorState.content remains the same 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Line One",
   },
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -27,7 +97,74 @@ Object {
 exports[`handleBackspace when selection is collapsed and at start of block merges with previous block 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Line OneLine Two",
   },
@@ -55,12 +192,78 @@ Object {
 exports[`handleBackspace when selection is collapsed removes previous character 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Lin One",
   },
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -79,7 +282,30 @@ Object {
 exports[`handleBackspace when selection is not collapsed removes range 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Lineo",
   },

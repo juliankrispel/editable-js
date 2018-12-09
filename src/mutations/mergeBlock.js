@@ -38,6 +38,7 @@ export default function mergeBlock(
   }
 
   targetBlock.text += block.text
+  targetBlock.characterData.splice(targetBlock.characterData.length, 0, ...block.characterData)
 
   deleteBlock(editorState, blockKey)
 }

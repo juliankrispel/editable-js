@@ -1,7 +1,6 @@
 // @flow
 import type { EditorState, SelectionState } from '../types'
 import { getBlockListInRange, getBlock } from '../queries'
-import updateBlock from './updateBlock'
 import mergeBlock from './mergeBlock'
 import collapseSelectionToStart from './collapseSelectionToStart'
 import collapseBlock from './collapseBlock'
@@ -20,16 +19,12 @@ export default function removeRange(
     const text = startBlock.text.slice(0, selection.startOffset) +
           startBlock.text.slice(selection.endOffset, startBlock.text.length)
 
+    startBlock.text = text
+    const length = selection.endOffset - selection.startOffset
+    startBlock.characterData.splice(selection.startOffset, length)
+
     Object.assign(editorState.selection, selection)
     collapseSelectionToStart(editorState)
-
-    updateBlock(
-      editorState,
-      selection.startKey,
-      {
-        text
-      }
-    )
 
     return
   }
@@ -43,7 +38,9 @@ export default function removeRange(
 
   // 2. Delete Selected text
   last.block.text = last.block.text.slice(selection.endOffset)
+  last.block.characterData.splice(0, selection.endOffset)
   first.block.text = first.block.text.slice(0, selection.startOffset)
+  first.block.characterData.splice(selection.startOffset)
 
   // 3. Merge first and last item
   if (blockList.length > 1) {

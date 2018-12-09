@@ -13,7 +13,6 @@ export default function splitBlock(editorState: EditorState, selection: Selectio
     removeRange(editorState, selection)
   }
 
-  // console.log('editorState after remove range', editorState)
   const { content } = editorState
   const { startOffset, endOffset, startKey } = selection
 
@@ -24,11 +23,22 @@ export default function splitBlock(editorState: EditorState, selection: Selectio
   }
 
   const textBefore = blockToSplit.text.slice(0, startOffset)
+  const charDataBefore = blockToSplit.characterData.slice(0, startOffset)
   const textAfter = blockToSplit.text.slice(endOffset)
+  const charDataAfter = blockToSplit.characterData.slice(endOffset)
 
-  const newBlock = createBlock({ ...blockToSplit, key: null, text: textAfter })
+  const newBlock = createBlock({
+    ...blockToSplit,
+    key: null,
+    characterData: charDataAfter,
+    text: textAfter
+  })
 
-  updateBlock(editorState, blockToSplit.key, { text: textBefore, children: [] })
+  updateBlock(editorState, blockToSplit.key, {
+    text: textBefore,
+    characterData: charDataBefore,
+    children: []
+  })
   insertBlockAfter(editorState, blockToSplit.key, newBlock)
 
   editorState.selection = {

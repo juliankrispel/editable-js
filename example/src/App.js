@@ -25,6 +25,8 @@ export default class App extends Component {
           console.log('Editor.props.onChange', editorState)
           this.setState({ editorState })
         }}
+
+        renderBlock={({ block, children }) => <div className='tree-node'>{children}</div>}
         editorState={this.state.editorState}
       />
     )

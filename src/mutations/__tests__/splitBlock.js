@@ -111,4 +111,79 @@ describe('splitBlock', () => {
     }])
     expect(newEditorState.content).toEqual(content)
   })
+
+  test('splits empty block', () => {
+    const selection = {
+      startKey: '1',
+      endKey: '1',
+      startOffset: 0,
+      endOffset: 0
+    }
+
+    const state = createEditorState([{
+      text: '',
+      key: '1'
+    }])
+
+    const newEditorState = commit(
+      state,
+      splitBlock,
+      selection
+    )
+
+    const expectedContent = createEditorState([{
+      key: expect.any(String),
+      children: [],
+      entityData: {},
+      text: ''
+    }, {
+      key: expect.any(String),
+      children: [],
+      text: ''
+    }])
+
+    expect(newEditorState.content).toEqual(expectedContent.content)
+  })
+
+  test('splits empty block consecutively', () => {
+    const selection = {
+      startKey: '1',
+      endKey: '1',
+      startOffset: 0,
+      endOffset: 0
+    }
+
+    const state = createEditorState([{
+      text: '',
+      key: '1'
+    }])
+
+    let newEditorState = commit(
+      state,
+      splitBlock,
+      selection
+    )
+
+    newEditorState = commit(
+      newEditorState,
+      splitBlock,
+      selection
+    )
+
+    const expectedContent = createEditorState([{
+      key: expect.any(String),
+      children: [],
+      text: ''
+    }, {
+      key: expect.any(String),
+      children: [],
+      text: ''
+    }, {
+      key: expect.any(String),
+      children: [],
+      text: ''
+    }])
+
+    expect(newEditorState.content).toEqual(expectedContent.content)
+  })
 })

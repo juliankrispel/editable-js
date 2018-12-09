@@ -17,6 +17,8 @@ import {
 } from '../history'
 
 import handleBackspace from './handleBackspace'
+import handleBackspaceLine from './handleBackspaceLine'
+import handleBackspaceWord from './handleBackspaceWord'
 import handleDelete from './handleDelete'
 
 import type { EditorState } from '../types'
@@ -34,10 +36,20 @@ const isRedo = (e: SyntheticKeyboardEvent<*>) => e.shiftKey && e.metaKey && e.ke
 export default function handleKeyDown (editorState: EditorState, event: SyntheticKeyboardEvent<*>): EditorState {
   let newEditorState = null
 
+  //   console.log({
+  //     'event.metaKey': event.metaKey,
+  //     'event.ctrlKey': event.ctrlKey,
+  //     'event.altKey': event.altKey
+  //   })
+
   if (isUndo(event)) {
     newEditorState = undo(editorState)
   } else if (isRedo(event)) {
     newEditorState = redo(editorState)
+  } else if (event.key === 'Backspace' && event.metaKey === true) {
+    newEditorState = commit(editorState, handleBackspaceLine)
+  } else if (event.key === 'Backspace' && event.altKey === true) {
+    newEditorState = commit(editorState, handleBackspaceWord)
   } else if (event.key === 'Backspace') {
     newEditorState = commit(editorState, handleBackspace)
   } else if (event.key === 'Enter') {

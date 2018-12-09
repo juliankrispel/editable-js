@@ -6,7 +6,7 @@ import { undo } from '../history'
 import type { EditorState } from '../types'
 
 const mergeLastCommit = (editorState: EditorState) => {
-  const prevEditorState = undo(undo(editorState))
+  const prevEditorState = undo(undo(editorState, true), true)
   let changes = { forward: [], reverse: [] }
   const lastTwoChanges = editorState.changes.slice(-2)
 

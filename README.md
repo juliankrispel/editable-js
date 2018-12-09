@@ -6,8 +6,15 @@
 ## Updates
 
 ```js
-
+const newEditorState = commit(
+  editorState,
+  draft => {
+    // mutate away
+  },
+)
 ```
+
+## Rendering Blocks
 
 ## Examples
 
@@ -34,13 +41,10 @@ Decorators can be simply expressed at the render level
 
 ```jsx
 <Editor
-  renderBlock={(block) => {
+  renderBlock={({ block, children }}) => {
     const { characterData } = block
     return <div>
     </div>
-  }}
-  renderCharacterRange={() => {
-
   }}
 />
 

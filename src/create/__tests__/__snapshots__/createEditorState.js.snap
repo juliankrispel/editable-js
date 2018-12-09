@@ -1,0 +1,351 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createEditorState creates editor state with character data 1`] = `
+Object {
+  "changeIndex": 0,
+  "changes": Array [],
+  "content": Array [
+    Object {
+      "characterData": Array [
+        Object {
+          "entities": Array [],
+          "styles": Array [
+            "bold",
+          ],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [
+            "bold",
+          ],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [
+            "bold",
+          ],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [
+            "1",
+          ],
+          "styles": Array [
+            "italic",
+          ],
+        },
+        Object {
+          "entities": Array [
+            "1",
+          ],
+          "styles": Array [
+            "italic",
+          ],
+        },
+        Object {
+          "entities": Array [
+            "1",
+          ],
+          "styles": Array [
+            "italic",
+          ],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+      ],
+      "children": Array [],
+      "entityData": Object {},
+      "key": "1",
+      "text": "hello my friend",
+    },
+  ],
+  "lastCommitted": null,
+  "selection": Object {
+    "endKey": "1",
+    "endOffset": 0,
+    "startKey": "1",
+    "startOffset": 0,
+  },
+}
+`;
+
+exports[`createEditorState creates editor state with nested structure 1`] = `
+Object {
+  "changeIndex": 0,
+  "changes": Array [],
+  "content": Array [
+    Object {
+      "characterData": Array [
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+      ],
+      "children": Array [
+        Object {
+          "characterData": Array [
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+          ],
+          "children": Array [
+            Object {
+              "characterData": Array [
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+              ],
+              "children": Array [
+                Object {
+                  "characterData": Array [
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                  ],
+                  "children": Array [],
+                  "entityData": Object {},
+                  "key": "4",
+                  "text": "Three",
+                },
+                Object {
+                  "characterData": Array [
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                    Object {
+                      "entities": Array [],
+                      "styles": Array [],
+                    },
+                  ],
+                  "children": Array [
+                    Object {
+                      "characterData": Array [
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                        Object {
+                          "entities": Array [],
+                          "styles": Array [],
+                        },
+                      ],
+                      "children": Array [],
+                      "entityData": Object {},
+                      "key": "6",
+                      "text": "Last Kid",
+                    },
+                  ],
+                  "entityData": Object {},
+                  "key": "5",
+                  "text": "end",
+                },
+              ],
+              "entityData": Object {},
+              "key": "3",
+              "text": "Two",
+            },
+            Object {
+              "characterData": Array [
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+                Object {
+                  "entities": Array [],
+                  "styles": Array [],
+                },
+              ],
+              "children": Array [],
+              "entityData": Object {},
+              "key": "7",
+              "text": "Four",
+            },
+          ],
+          "entityData": Object {},
+          "key": "2",
+          "text": "One",
+        },
+        Object {
+          "characterData": Array [
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+            Object {
+              "entities": Array [],
+              "styles": Array [],
+            },
+          ],
+          "children": Array [],
+          "entityData": Object {},
+          "key": "8",
+          "text": "Five",
+        },
+      ],
+      "entityData": Object {},
+      "key": "1",
+      "text": "start ",
+    },
+    Object {
+      "characterData": Array [
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+        Object {
+          "entities": Array [],
+          "styles": Array [],
+        },
+      ],
+      "children": Array [],
+      "entityData": Object {},
+      "key": "9",
+      "text": "Six",
+    },
+  ],
+  "lastCommitted": null,
+  "selection": Object {
+    "endKey": "1",
+    "endOffset": 0,
+    "startKey": "1",
+    "startOffset": 0,
+  },
+}
+`;

@@ -3,7 +3,74 @@
 exports[`handleDelete when selection is collapsed and at end of block merges with next block 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Line OneLine Two",
   },
@@ -22,12 +89,82 @@ Object {
 exports[`handleDelete when selection is collapsed and at end of the document editorState.content remains the same 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Line One",
   },
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -46,12 +183,78 @@ Object {
 exports[`handleDelete when selection is collapsed removes next character 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "LineOne",
   },
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -79,7 +282,26 @@ Object {
 exports[`handleDelete when selection is not collapsed removes range 1`] = `
 Array [
   Object {
+    "characterData": Array [
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+      Object {
+        "entities": Array [],
+        "styles": Array [],
+      },
+    ],
     "children": Array [],
+    "entityData": Object {},
     "key": "1",
     "text": "Line",
   },

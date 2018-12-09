@@ -9,10 +9,10 @@ export type SelectionState = {
   endKey: string
 }
 
-export type CharacterData = Array<{
-  type: string,
-  [string]: any
-}>
+export type CharacterData = {
+  styles: Array<string>,
+  entities: Array<string>
+}
 
 export type Fragment = {
   text: string,
@@ -22,7 +22,8 @@ export type Fragment = {
 export type Block = {
   key: string,
   text: string,
-  //   characterData: Array<CharacterData>,
+  characterData: Array<CharacterData>,
+  entityData: { [string]: any },
   type?: string,
   data?: Object,
   children?: Array<Block>
@@ -46,14 +47,17 @@ export type ContentState = Array<Block>
 export type CharacterRange = {
   start: number,
   offset: number,
-  [string]: any
+  styles?: Array<string>,
+  entities?: Array<string>,
 }
 
 export type RawBlock = {
   text: string,
+  type?: string,
   key?: string,
   data?: Object,
   characterRanges?: Array<CharacterRange>,
+  entityData: { [string]: any },
   children?: Array<RawBlock>
 }
 
