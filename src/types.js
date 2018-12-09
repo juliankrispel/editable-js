@@ -14,6 +14,10 @@ export type CharacterData = {
   entities: Array<string>
 }
 
+export type TextFragment = CharacterData & {
+  text: string,
+}
+
 export type Fragment = {
   text: string,
   type: string,
