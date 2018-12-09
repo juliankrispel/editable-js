@@ -2,10 +2,10 @@
 
 import { createEditorState } from '../../create'
 import { commit } from '../../history'
-import handleBackspace from '../handleBackspace'
+import handleDelete from '../handleDelete'
 import { updateSelection } from '../../mutations'
 
-describe('handleBackspace', () => {
+describe('handleDelete', () => {
   const initialState = createEditorState([{
     text: 'Line One',
     key: '1'
@@ -22,7 +22,7 @@ describe('handleBackspace', () => {
       endKey: '2'
     })
 
-    newEditorState = commit(newEditorState, handleBackspace)
+    newEditorState = commit(newEditorState, handleDelete)
 
     test('removes range', () => {
       expect(newEditorState.content).toMatchSnapshot()
@@ -41,45 +41,45 @@ describe('handleBackspace', () => {
       endKey: '1'
     })
 
-    newEditorState = commit(newEditorState, handleBackspace)
+    newEditorState = commit(newEditorState, handleDelete)
 
-    test('removes previous character', () => {
+    test('removes next character', () => {
       expect(newEditorState.content).toMatchSnapshot()
     })
 
-    test('moves selection to prev character', () => {
+    test('selection remains the same', () => {
       expect(newEditorState.selection).toMatchSnapshot()
     })
   })
 
-  describe('when selection is collapsed and at start of block', () => {
+  describe('when selection is collapsed and at end of block', () => {
     let newEditorState = commit(initialState, updateSelection, {
-      startOffset: 0,
-      startKey: '2',
-      endOffset: 0,
-      endKey: '2'
-    })
-
-    newEditorState = commit(newEditorState, handleBackspace)
-
-    test('merges with previous block', () => {
-      expect(newEditorState.content).toMatchSnapshot()
-    })
-
-    test('moves selection to end of previous block', () => {
-      expect(newEditorState.selection).toMatchSnapshot()
-    })
-  })
-
-  describe('when selection is collapsed and at beginning of the document', () => {
-    let newEditorState = commit(initialState, updateSelection, {
-      startOffset: 0,
+      startOffset: initialState.content[0].text.length,
       startKey: '1',
-      endOffset: 0,
+      endOffset: initialState.content[0].text.length,
       endKey: '1'
     })
 
-    newEditorState = commit(newEditorState, handleBackspace)
+    newEditorState = commit(newEditorState, handleDelete)
+
+    test('merges with next block', () => {
+      expect(newEditorState.content).toMatchSnapshot()
+    })
+
+    test('selection remains the same', () => {
+      expect(newEditorState.selection).toMatchSnapshot()
+    })
+  })
+
+  describe('when selection is collapsed and at end of the document', () => {
+    let newEditorState = commit(initialState, updateSelection, {
+      startOffset: initialState.content[0].text.length,
+      startKey: '2',
+      endOffset: initialState.content[0].text.length,
+      endKey: '2'
+    })
+
+    newEditorState = commit(newEditorState, handleDelete)
 
     test('editorState.content remains the same', () => {
       expect(newEditorState.content).toMatchSnapshot()

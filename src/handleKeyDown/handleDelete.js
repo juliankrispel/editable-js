@@ -20,7 +20,7 @@ export default function handleDelete (editorState: EditorState) {
   }
 
   if (selection.endOffset < currentBlock.text.length) {
-    selection.endOffset = selection.endOffset
+    selection.endOffset = selection.endOffset + 1
   } else if (blockAfter != null) {
     selection.endKey = blockAfter.key
     selection.endOffset = 0

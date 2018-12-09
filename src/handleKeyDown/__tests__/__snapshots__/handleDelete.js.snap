@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleDelete when selection is collapsed and at end of block merges with next block 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Line OneLine Two",
+  },
+]
+`;
+
+exports[`handleDelete when selection is collapsed and at end of block selection remains the same 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 8,
+  "startKey": "1",
+  "startOffset": 8,
+}
+`;
+
+exports[`handleDelete when selection is collapsed and at end of the document editorState.content remains the same 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Line One",
+  },
+  Object {
+    "children": Array [],
+    "key": "2",
+    "text": "Line Two",
+  },
+]
+`;
+
+exports[`handleDelete when selection is collapsed and at end of the document editorState.selection remains the same 1`] = `
+Object {
+  "endKey": "2",
+  "endOffset": 8,
+  "startKey": "2",
+  "startOffset": 8,
+}
+`;
+
+exports[`handleDelete when selection is collapsed removes next character 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "LineOne",
+  },
+  Object {
+    "children": Array [],
+    "key": "2",
+    "text": "Line Two",
+  },
+]
+`;
+
+exports[`handleDelete when selection is collapsed selection remains the same 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 4,
+  "startKey": "1",
+  "startOffset": 4,
+}
+`;
+
+exports[`handleDelete when selection is not collapsed collapses selection to start 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 4,
+  "startKey": "1",
+  "startOffset": 4,
+}
+`;
+
+exports[`handleDelete when selection is not collapsed removes range 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Line",
+  },
+]
+`;

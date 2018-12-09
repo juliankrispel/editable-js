@@ -1,5 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`handleBackspace when selection is collapsed and at beginning of the document editorState.content remains the same 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Line One",
+  },
+  Object {
+    "children": Array [],
+    "key": "2",
+    "text": "Line Two",
+  },
+]
+`;
+
+exports[`handleBackspace when selection is collapsed and at beginning of the document editorState.selection remains the same 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 0,
+  "startKey": "1",
+  "startOffset": 0,
+}
+`;
+
+exports[`handleBackspace when selection is collapsed and at start of block merges with previous block 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Line OneLine Two",
+  },
+]
+`;
+
+exports[`handleBackspace when selection is collapsed and at start of block moves selection to end of previous block 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 8,
+  "startKey": "1",
+  "startOffset": 8,
+}
+`;
+
+exports[`handleBackspace when selection is collapsed moves selection to prev character 1`] = `
+Object {
+  "endKey": "1",
+  "endOffset": 3,
+  "startKey": "1",
+  "startOffset": 3,
+}
+`;
+
+exports[`handleBackspace when selection is collapsed removes previous character 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "key": "1",
+    "text": "Lin One",
+  },
+  Object {
+    "children": Array [],
+    "key": "2",
+    "text": "Line Two",
+  },
+]
+`;
+
 exports[`handleBackspace when selection is not collapsed collapses selection to start 1`] = `
 Object {
   "endKey": "1",
