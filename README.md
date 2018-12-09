@@ -1,6 +1,13 @@
 # editable-js
 
+Disclaimer: Currently I'm working on the prototype, this isn't even ready to contribute to
+
 > A framework for rich text editing
+
+- Inspired by both [draft](https://draftjs.org) js and [slate.js](https://slatejs.org)
+- Minimal architecture
+- Small API surface
+- Immutable data structures powered by [immer](https://github.com/mweststrate/immer)
 
 
 ## Updates
@@ -12,40 +19,4 @@ const newEditorState = commit(
     // mutate away
   },
 )
-```
-
-## Rendering Blocks
-
-## Examples
-
-### Styling text
-
-Whether it's styling text, or adding entities, this can be done via updating character data. This is completely agnostic.
-
-```jsx
-const newEditorState = update(editorState, (draftEditorState) => {
-  updateCharacterData(
-    draftEditorState,
-    selection,
-    (character, index) => ({
-      ...character,
-      style: 'BOLD'
-    })
-  )
-})
-```
-
-### Decorators
-
-Decorators can be simply expressed at the render level
-
-```jsx
-<Editor
-  renderBlock={({ block, children }}) => {
-    const { characterData } = block
-    return <div>
-    </div>
-  }}
-/>
-
 ```
