@@ -8,8 +8,7 @@ export default function insertText(
   selection: SelectionState,
   _text: string,
   characterData: ?CharacterData = {
-    styles: [],
-    entities: []
+    marks: []
   }
 ) {
   if (!isCollapsed(selection)) {

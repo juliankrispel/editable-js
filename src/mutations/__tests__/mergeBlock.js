@@ -4,7 +4,7 @@ import { createEditorState } from '../../create'
 import { commit } from '../../history'
 import mergeBlock from '../mergeBlock'
 
-const initialState = createEditorState([{
+const initialState = createEditorState({ blocks: [{
   key: '1',
   text: 'One',
   children: [{
@@ -15,7 +15,7 @@ const initialState = createEditorState([{
       text: 'Three'
     }]
   }]
-}])
+}]})
 
 describe('mergeBlock', () => {
   test('deletes block and its children', () => {
@@ -26,14 +26,14 @@ describe('mergeBlock', () => {
       '1'
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: '1',
       text: 'OneTwo',
       children: [{
         key: '3',
         text: 'Three'
       }]
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(content)
   })

@@ -5,13 +5,13 @@ import { commit } from '../../history'
 import insertText from '../insertText'
 
 describe('insertText', () => {
-  const initialState = createEditorState([{
+  const initialState = createEditorState({ blocks: [{
     key: '1',
     text: 'One'
   }, {
     key: '2',
     text: 'Two'
-  }])
+  }]})
 
   const selection = {
     startKey: '1',
@@ -27,13 +27,13 @@ describe('insertText', () => {
     ' and'
   )
 
-  const expectedEditorState = createEditorState([{
+  const expectedEditorState = createEditorState({ blocks: [{
     key: '1',
     text: 'One and'
   }, {
     key: '2',
     text: 'Two'
-  }])
+  }]})
 
   describe('inserts text and maintains character data', () => {
     expect(newEditorState.content).toEqual(expectedEditorState.content)

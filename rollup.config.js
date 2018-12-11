@@ -4,23 +4,17 @@ import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
+import { uglify } from 'rollup-plugin-uglify'
 
 import pkg from './package.json'
 
-export default {
+const config = {
   input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
-  ],
+  output: {
+    file: pkg.module,
+    format: 'es',
+    sourcemap: true
+  },
   plugins: [
     external(),
     postcss({
@@ -39,9 +33,25 @@ export default {
         'node_modules/process-es6/**'
       ],
       namedExports: {
-        'node_modules/react/index.js': ['Children', 'Component', 'PropTypes', 'createElement', 'createRef'],
+        'node_modules/react/index.js': ['Fragment', 'Children', 'Component', 'PropTypes', 'createElement', 'createRef'],
         'node_modules/react-dom/index.js': ['render']
       }
     })
-  ]
+  ],
+  external: ['immer', 'react', 'react-dom']
 }
+
+export default [
+  config,
+  {
+    ...config,
+    plugins: [
+      ...config.plugins,
+      uglify()
+    ],
+    output: {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true
+    }
+  }]

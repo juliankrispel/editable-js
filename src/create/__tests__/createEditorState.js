@@ -1,22 +1,9 @@
 // @flow
 import createEditorState from '../createEditorState'
 
-// const emptyState = {
-//   content: [],
-//   selection: {
-//     startKey: 'a',
-//     endKey: 'a',
-//     startOffset: 0,
-//     endOffset: 0
-//   },
-//   changes: [],
-//   changeIndex: -1,
-//   lastCommitted: null
-// }
-
 describe('createEditorState', () => {
   test('creates editor state with nested structure', () => {
-    expect(createEditorState([{
+    expect(createEditorState({ blocks: [{
       text: 'start ',
       key: '1',
       children: [{
@@ -49,23 +36,22 @@ describe('createEditorState', () => {
     }, {
       text: 'Six',
       key: '9'
-    }])).toMatchSnapshot()
+    }]})).toMatchSnapshot()
   })
 
   test('creates editor state with character data', () => {
-    expect(createEditorState([{
+    expect(createEditorState({ blocks: [{
       text: 'hello my friend',
       key: '1',
       characterRanges: [{
-        start: 0,
-        offset: 3,
-        styles: ['bold']
+        offset: 0,
+        length: 3,
+        marks: ['bold']
       }, {
-        start: 5,
-        offset: 3,
-        styles: ['italic'],
-        entities: ['1']
+        offset: 5,
+        length: 3,
+        marks: ['italic', '1']
       }]
-    }])).toMatchSnapshot()
+    }]})).toMatchSnapshot()
   })
 })

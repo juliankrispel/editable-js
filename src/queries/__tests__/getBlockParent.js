@@ -3,7 +3,7 @@
 import { createEditorState } from '../../create'
 import getBlockParent from '../getBlockParent'
 
-const { content } = createEditorState([{
+const { content } = createEditorState({ blocks: [{
   text: 'One',
   children: [{
     text: 'Two',
@@ -13,7 +13,7 @@ const { content } = createEditorState([{
   }]
 }, {
   text: 'Four'
-}])
+}]})
 
 describe('getBlockParent', () => {
   test('gets correct block', () => {

@@ -6,7 +6,7 @@ import deleteBlock from '../deleteBlock'
 
 describe('deleteBlock', () => {
   test('deletes block and its children', () => {
-    const initialState = createEditorState([{
+    const initialState = createEditorState({ blocks: [{
       key: '1',
       text: 'One',
       children: [{
@@ -17,7 +17,7 @@ describe('deleteBlock', () => {
           text: 'Three'
         }]
       }]
-    }])
+    }]})
 
     const newEditorState = commit(
       initialState,
@@ -25,17 +25,17 @@ describe('deleteBlock', () => {
       initialState.content[0].children[0].key
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: '1',
       text: 'One',
       children: []
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(content)
   })
 
   test('deletes block at root', () => {
-    const initialState = createEditorState([{
+    const initialState = createEditorState({ blocks: [{
       key: '1',
       text: 'One'
     }, {
@@ -44,7 +44,7 @@ describe('deleteBlock', () => {
     }, {
       key: '3',
       text: 'Three'
-    }])
+    }]})
 
     const newEditorState = commit(
       initialState,
@@ -52,13 +52,13 @@ describe('deleteBlock', () => {
       '1'
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: '2',
       text: 'Two'
     }, {
       key: '3',
       text: 'Three'
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(content)
   })

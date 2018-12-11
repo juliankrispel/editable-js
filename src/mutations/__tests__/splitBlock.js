@@ -4,7 +4,7 @@ import { createEditorState } from '../../create'
 import { commit } from '../../history'
 import splitBlock from '../splitBlock'
 
-const initialState = createEditorState([{
+const initialState = createEditorState({ blocks: [{
   key: '1',
   text: 'One',
   children: [{
@@ -15,7 +15,7 @@ const initialState = createEditorState([{
       text: 'Three'
     }]
   }]
-}])
+}]})
 
 describe('splitBlock', () => {
   test('splits block at root level, including children', () => {
@@ -32,7 +32,7 @@ describe('splitBlock', () => {
       selection
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: '1',
       text: 'O'
     }, {
@@ -46,7 +46,7 @@ describe('splitBlock', () => {
           text: 'Three'
         }]
       }]
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(content)
   })
@@ -65,7 +65,7 @@ describe('splitBlock', () => {
       selection
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: '1',
       text: 'One',
       children: [{
@@ -79,7 +79,7 @@ describe('splitBlock', () => {
           text: 'Three'
         }]
       }]
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(content)
   })
@@ -98,7 +98,7 @@ describe('splitBlock', () => {
       selection
     )
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       key: expect.any(String),
       text: 'O'
     }, {
@@ -108,7 +108,7 @@ describe('splitBlock', () => {
         key: expect.any(String),
         text: 'Three'
       }]
-    }])
+    }]})
     expect(newEditorState.content).toEqual(content)
   })
 
@@ -120,10 +120,10 @@ describe('splitBlock', () => {
       endOffset: 0
     }
 
-    const state = createEditorState([{
+    const state = createEditorState({ blocks: [{
       text: '',
       key: '1'
-    }])
+    }]})
 
     const newEditorState = commit(
       state,
@@ -131,16 +131,15 @@ describe('splitBlock', () => {
       selection
     )
 
-    const expectedContent = createEditorState([{
+    const expectedContent = createEditorState({ blocks: [{
       key: expect.any(String),
       children: [],
-      entityData: {},
       text: ''
     }, {
       key: expect.any(String),
       children: [],
       text: ''
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(expectedContent.content)
   })
@@ -153,10 +152,10 @@ describe('splitBlock', () => {
       endOffset: 0
     }
 
-    const state = createEditorState([{
+    const state = createEditorState({ blocks: [{
       text: '',
       key: '1'
-    }])
+    }]})
 
     let newEditorState = commit(
       state,
@@ -170,7 +169,7 @@ describe('splitBlock', () => {
       selection
     )
 
-    const expectedContent = createEditorState([{
+    const expectedContent = createEditorState({ blocks: [{
       key: expect.any(String),
       children: [],
       text: ''
@@ -182,7 +181,7 @@ describe('splitBlock', () => {
       key: expect.any(String),
       children: [],
       text: ''
-    }])
+    }]})
 
     expect(newEditorState.content).toEqual(expectedContent.content)
   })

@@ -6,21 +6,20 @@ export default function createCharacterData(block: RawBlock): Array<CharacterDat
   if (block.text != null) {
     return block.text.split('').map((_, index) => {
       const data = {
-        styles: [],
-        entities: []
+        marks: []
       }
 
       if (block.characterRanges != null) {
         block.characterRanges.filter(range => {
-          return range.start <= index &&
-          range.offset + range.start > index
+          return range.offset <= index &&
+          range.offset + range.length > index
         }).forEach(range => {
-          if (Array.isArray(range.styles)) {
-            data.styles = data.styles.concat(range.styles)
+          if (Array.isArray(range.marks)) {
+            data.marks = data.marks.concat(range.marks)
           }
 
-          if (Array.isArray(range.entities)) {
-            data.entities = data.entities.concat(range.entities)
+          if (range.entity != null) {
+            data.entity = range.entity
           }
         })
       }

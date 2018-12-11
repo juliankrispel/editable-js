@@ -6,13 +6,13 @@ import handleDelete from '../handleDelete'
 import { updateSelection } from '../../mutations'
 
 describe('handleDelete', () => {
-  const initialState = createEditorState([{
+  const initialState = createEditorState({ blocks: [{
     text: 'Line One',
     key: '1'
   }, {
     text: 'Line Two',
     key: '2'
-  }])
+  }]})
 
   describe('when selection is not collapsed', () => {
     let newEditorState = commit(initialState, updateSelection, {

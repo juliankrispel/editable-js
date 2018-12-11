@@ -1,17 +1,19 @@
 // @flow
 
-import React, { Component, createRef } from 'react'
-import type { Node } from 'react'
+import React, { Fragment, Component, createRef } from 'react'
+import type { Node, TextFragment } from 'react'
 
 import { getDomSelection, setDomSelection } from '../selection'
 import handleKeyDown from '../handleKeyDown'
 import shallowEqual from '../shallowEqual'
+import { createTextFragments } from '../create'
 import type { EditorState, Block } from '../types'
 
 type Props = {
   onChange: EditorState => void,
   editorState: EditorState,
-  renderBlock?: ({ block: Block, children: Node }) => Node
+  renderBlock?: ({ block: Block, children: Node }) => Node,
+  renderFragment?: ({ fragment: TextFragment, children: Node }) => Node
 }
 
 const editorStyles = {
@@ -49,7 +51,35 @@ export default class Editor extends Component<Props> {
 
   renderBlock = (block: Block): Node => {
     const { key, text, children } = block
-    const textNode = text || <br />
+    let textNode = text || <br />
+
+    if (text != null && text.length > 0) {
+      console.log('has text', text, 'boing')
+      const fragments = createTextFragments(block, this.props.editorState.entityMap)
+
+      let offset = 0
+
+      textNode = fragments.map(fragment => {
+        console.log('yo', fragment.text.length)
+        let textFragment = <span
+          data-block-key={key}
+          data-fragment-start={offset}
+          data-fragment-end={offset + fragment.text.length}
+        >{fragment.text || <br />}</span>
+        if (this.props.renderFragment) {
+          textFragment = this.props.renderFragment({ children: textFragment, fragment })
+        }
+        offset += fragment.text.length
+        return textFragment
+      })
+    } else {
+      console.log('does not have text')
+      textNode = <span
+        data-block-key={key}
+        data-fragment-start={0}
+        data-fragment-end={0}
+      ><br /></span>
+    }
 
     let renderedChildren = null
     let renderedElement = null
@@ -59,10 +89,10 @@ export default class Editor extends Component<Props> {
     }
 
     if (typeof text === 'string') {
-      renderedElement = <div style={blockStyles} key={key} data-block-key={key}>
+      renderedElement = <Fragment key={key}>
         <span>{textNode}</span>
         {renderedChildren}
-      </div>
+      </Fragment>
     }
 
     if (this.props.renderBlock) {

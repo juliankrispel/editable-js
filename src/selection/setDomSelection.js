@@ -25,14 +25,32 @@ export default function setDomSelection(
   { startOffset, endOffset, startKey, endKey }: SelectionState
 ): void {
   const newSelection = window.getSelection()
-  const startNode = findRangeTarget(containerNode.querySelector(`[data-block-key="${startKey}"]`))
-  const endNode = findRangeTarget(containerNode.querySelector(`[data-block-key="${endKey}"]`))
+  const startNodes = containerNode.querySelectorAll(`[data-block-key="${startKey}"]`)
+  const endNodes = containerNode.querySelectorAll(`[data-block-key="${endKey}"]`)
+
+  const startFragment = Array.from(startNodes).find(node => {
+    return parseInt(node.dataset.fragmentStart) <= startOffset &&
+    parseInt(node.dataset.fragmentEnd) >= startOffset
+  })
+
+  const startFragmentOffset = parseInt(startFragment.dataset.fragmentStart)
+
+  const endFragment = Array.from(endNodes).find(node => {
+    return parseInt(node.dataset.fragmentStart) <= endOffset &&
+    parseInt(node.dataset.fragmentEnd) >= endOffset
+  })
+
+  const endFragmentOffset = parseInt(endFragment.dataset.fragmentStart)
+
+  const startNode = findRangeTarget(startFragment)
+  const endNode = findRangeTarget(endFragment)
+
   newSelection.removeAllRanges()
   const range = document.createRange()
 
   if (startNode != null && endNode != null) {
-    range.setStart(startNode, startOffset)
-    range.setEnd(endNode, endOffset)
+    range.setStart(startNode, startOffset - startFragmentOffset)
+    range.setEnd(endNode, endOffset - endFragmentOffset)
     newSelection.addRange(range)
   }
 }

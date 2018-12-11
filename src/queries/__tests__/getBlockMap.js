@@ -30,7 +30,7 @@ describe('getBlockMap', () => {
      *
      */
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       text: 'One',
       children: [{
         text: 'Two',
@@ -40,7 +40,7 @@ describe('getBlockMap', () => {
       }]
     }, {
       text: 'Four'
-    }])
+    }]})
 
     const expectedState = {
       [content[0].key]: {

@@ -10,24 +10,18 @@ export type SelectionState = {
 }
 
 export type CharacterData = {
-  styles: Array<string>,
-  entities: Array<string>
+  marks: Array<string>,
+  entity?: string
 }
 
 export type TextFragment = CharacterData & {
   text: string,
 }
 
-export type Fragment = {
-  text: string,
-  type: string,
-}
-
 export type Block = {
   key: string,
   text: string,
   characterData: Array<CharacterData>,
-  entityData: { [string]: any },
   type?: string,
   data?: Object,
   children?: Array<Block>
@@ -46,13 +40,23 @@ export type BlockMap = {
   }
 }
 
+export type Entity = {
+  type: string,
+  mutable: boolean,
+  data: any
+}
+
+export type EntityMap = {
+  [string]: Entity
+}
+
 export type ContentState = Array<Block>
 
 export type CharacterRange = {
-  start: number,
   offset: number,
-  styles?: Array<string>,
-  entities?: Array<string>,
+  length: number,
+  marks?: Array<string>,
+  entity?: string
 }
 
 export type RawBlock = {
@@ -61,15 +65,19 @@ export type RawBlock = {
   key?: string,
   data?: Object,
   characterRanges?: Array<CharacterRange>,
-  entityData: { [string]: any },
   children?: Array<RawBlock>
 }
 
-export type RawContentState = Array<RawBlock>
+export type RawContentState = {
+  blocks: Array<RawBlock>,
+  entityMap?: EntityMap
+}
 
 export type EditorState = {
   content: ContentState,
+  entityMap: EntityMap,
   selection: SelectionState,
+  currentCharacterData?: CharacterData,
   changes: Array<{
     forward: Array<Patch>,
     reverse: Array<Patch>,

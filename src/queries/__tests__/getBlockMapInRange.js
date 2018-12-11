@@ -3,7 +3,7 @@
 import { createEditorState } from '../../create'
 import getBlockMapInRange from '../getBlockMapInRange'
 
-const { content } = createEditorState([{
+const { content } = createEditorState({ blocks: [{
   text: 'One',
   children: [{
     text: 'Two',
@@ -13,7 +13,7 @@ const { content } = createEditorState([{
   }]
 }, {
   text: 'Four'
-}])
+}]})
 
 describe('getBlockMapInRange', () => {
   describe('filter blocks that touch selection', () => {

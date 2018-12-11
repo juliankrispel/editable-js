@@ -9,3 +9,33 @@ body {
   padding-left: 1em;
   border-left: 1px solid #ccc;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.mention {
+  background: #eee;
+  padding: 0.1em 0.2em;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.inline-image {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid #999;
+  padding: .4em;
+}

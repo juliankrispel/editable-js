@@ -2,7 +2,7 @@
 
 import produce, { applyPatches} from 'immer'
 
-import { undo } from '../history'
+import undo from './undo'
 import type { EditorState } from '../types'
 
 const mergeLastCommit = (editorState: EditorState) => {

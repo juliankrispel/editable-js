@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPreviousCharacterData gets character data from previous character 1`] = `
+Object {
+  "marks": Array [
+    "bold",
+  ],
+}
+`;

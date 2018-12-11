@@ -1,22 +1,23 @@
 // @flow
-import type { TextFragment, Block } from '../types'
+import type { TextFragment, Block, EntityMap } from '../types'
 
-const isEqualFragment = (left, right) => (
-  left.styles.sort().join('') === right.styles.sort().join('') &&
-  left.entities.sort().join('') === right.entities.sort().join('')
-)
+const hasEqualMarks = (left, right) =>
+  right.entity === left.entity &&
+  Array.from(left.marks).sort().join('') === Array.from(right.marks).sort().join('')
 
-export default function createTextFragments(block: Block): Array<TextFragment> {
+export default function createTextFragments(block: Block, entityMap: EntityMap): Array<TextFragment> {
   return block.characterData.reduce(
     (acc, data, index) => {
       if (acc.length < 1) {
         return [{
-          ...data,
+          marks: data.marks,
+          entity: data.entity,
+          offset: index,
           text: block.text[index]
         }]
       } else {
         const lastFragment = acc[acc.length - 1]
-        if (isEqualFragment(lastFragment, data)) {
+        if (hasEqualMarks(lastFragment, data)) {
           return acc.slice(0, -1).concat([{
             ...lastFragment,
             text: lastFragment.text + block.text[index]
@@ -25,7 +26,9 @@ export default function createTextFragments(block: Block): Array<TextFragment> {
           return [
             ...acc,
             {
-              ...data,
+              marks: data.marks,
+              entity: data.entity,
+              offset: index,
               text: block.text[index]
             }
           ]
@@ -33,5 +36,8 @@ export default function createTextFragments(block: Block): Array<TextFragment> {
       }
     },
     []
-  )
+  ).map(fragment => ({
+    ...fragment,
+    entity: fragment.entity != null ? entityMap[fragment.entity] : null,
+  }))
 }

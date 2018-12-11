@@ -2,12 +2,12 @@
 import type { EditorState, SelectionState } from '../types'
 import { getBlockMap } from '../queries'
 
-const getBlockNode = (el: HTMLElement): ?HTMLElement => {
+const getFragmentNode = (el: HTMLElement): ?HTMLElement => {
   if (el.dataset && el.dataset.blockKey) {
     return el
   } else if (el.parentElement) {
     // $FlowFixMe
-    return getBlockNode(el.parentElement)
+    return getFragmentNode(el.parentElement)
   }
   return null
 }
@@ -24,8 +24,8 @@ export default function getDomSelection({ content, selection }: EditorState): Se
     focusOffset
   } = domSelection
 
-  const anchorNode = getBlockNode(domSelection.baseNode)
-  const focusNode = getBlockNode(domSelection.focusNode)
+  const anchorNode = getFragmentNode(domSelection.baseNode)
+  const focusNode = getFragmentNode(domSelection.focusNode)
 
   if (anchorNode == null || focusNode == null) {
     return selection
@@ -34,12 +34,15 @@ export default function getDomSelection({ content, selection }: EditorState): Se
   const anchorKey = anchorNode.dataset.blockKey
   const focusKey = focusNode.dataset.blockKey
 
-  const keys = Object.keys(getBlockMap(content))
-  const anchorIndex = keys.indexOf(anchorKey)
-  const focusIndex = keys.indexOf(focusKey)
+  const anchorFragmentOffset = parseInt(anchorNode.dataset.fragmentStart)
+  const focusFragmentOffset = parseInt(focusNode.dataset.fragmentStart)
 
-  let startOffset = anchorOffset
-  let endOffset = focusOffset
+  const keys = Object.keys(getBlockMap(content))
+  const anchorIndex = keys.indexOf(anchorKey) + anchorFragmentOffset
+  const focusIndex = keys.indexOf(focusKey) + focusFragmentOffset
+
+  let startOffset = anchorOffset + anchorFragmentOffset
+  let endOffset = focusOffset + focusFragmentOffset
   let startKey = anchorKey
   let endKey = focusKey
 
@@ -48,8 +51,8 @@ export default function getDomSelection({ content, selection }: EditorState): Se
   if (reverse === true) {
     startKey = focusKey
     endKey = anchorKey
-    startOffset = focusOffset
-    endOffset = anchorOffset
+    startOffset = focusOffset + focusFragmentOffset
+    endOffset = anchorOffset + anchorFragmentOffset
   }
 
   return {

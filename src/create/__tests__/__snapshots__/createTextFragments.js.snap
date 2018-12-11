@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createTextFragments creates text fragments from block element with marks 1`] = `
+Array [
+  Object {
+    "entity": null,
+    "marks": Array [
+      "bold",
+      "italic",
+    ],
+    "offset": 0,
+    "text": "Hell",
+  },
+  Object {
+    "entity": null,
+    "marks": Array [],
+    "offset": 4,
+    "text": "o World",
+  },
+]
+`;
+
+exports[`createTextFragments creates text fragments from block element with overlapping marks 1`] = `
+Array [
+  Object {
+    "entity": null,
+    "marks": Array [
+      "bold",
+    ],
+    "offset": 0,
+    "text": "H",
+  },
+  Object {
+    "entity": null,
+    "marks": Array [
+      "bold",
+      "italic",
+    ],
+    "offset": 1,
+    "text": "ell",
+  },
+  Object {
+    "entity": null,
+    "marks": Array [
+      "italic",
+    ],
+    "offset": 4,
+    "text": "o W",
+  },
+  Object {
+    "entity": null,
+    "marks": Array [],
+    "offset": 7,
+    "text": "orld",
+  },
+]
+`;
+
+exports[`createTextFragments creates text fragments from block element without marks 1`] = `
+Array [
+  Object {
+    "entity": null,
+    "marks": Array [],
+    "offset": 0,
+    "text": "Hello World",
+  },
+]
+`;

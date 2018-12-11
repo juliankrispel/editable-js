@@ -8,90 +8,72 @@ Object {
     Object {
       "characterData": Array [
         Object {
-          "entities": Array [],
-          "styles": Array [
+          "marks": Array [
             "bold",
           ],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [
+          "marks": Array [
             "bold",
           ],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [
+          "marks": Array [
             "bold",
           ],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [
+          "marks": Array [
+            "italic",
             "1",
           ],
-          "styles": Array [
-            "italic",
-          ],
         },
         Object {
-          "entities": Array [
+          "marks": Array [
+            "italic",
             "1",
           ],
-          "styles": Array [
-            "italic",
-          ],
         },
         Object {
-          "entities": Array [
+          "marks": Array [
+            "italic",
             "1",
           ],
-          "styles": Array [
-            "italic",
-          ],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
       ],
       "children": Array [],
-      "entityData": Object {},
       "key": "1",
       "text": "hello my friend",
     },
   ],
+  "entityMap": undefined,
   "lastCommitted": null,
   "selection": Object {
     "endKey": "1",
@@ -110,236 +92,189 @@ Object {
     Object {
       "characterData": Array [
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
       ],
       "children": Array [
         Object {
           "characterData": Array [
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
           ],
           "children": Array [
             Object {
               "characterData": Array [
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
               ],
               "children": Array [
                 Object {
                   "characterData": Array [
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                   ],
                   "children": Array [],
-                  "entityData": Object {},
                   "key": "4",
                   "text": "Three",
                 },
                 Object {
                   "characterData": Array [
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                     Object {
-                      "entities": Array [],
-                      "styles": Array [],
+                      "marks": Array [],
                     },
                   ],
                   "children": Array [
                     Object {
                       "characterData": Array [
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                         Object {
-                          "entities": Array [],
-                          "styles": Array [],
+                          "marks": Array [],
                         },
                       ],
                       "children": Array [],
-                      "entityData": Object {},
                       "key": "6",
                       "text": "Last Kid",
                     },
                   ],
-                  "entityData": Object {},
                   "key": "5",
                   "text": "end",
                 },
               ],
-              "entityData": Object {},
               "key": "3",
               "text": "Two",
             },
             Object {
               "characterData": Array [
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
                 Object {
-                  "entities": Array [],
-                  "styles": Array [],
+                  "marks": Array [],
                 },
               ],
               "children": Array [],
-              "entityData": Object {},
               "key": "7",
               "text": "Four",
             },
           ],
-          "entityData": Object {},
           "key": "2",
           "text": "One",
         },
         Object {
           "characterData": Array [
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
             Object {
-              "entities": Array [],
-              "styles": Array [],
+              "marks": Array [],
             },
           ],
           "children": Array [],
-          "entityData": Object {},
           "key": "8",
           "text": "Five",
         },
       ],
-      "entityData": Object {},
       "key": "1",
       "text": "start ",
     },
     Object {
       "characterData": Array [
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
         Object {
-          "entities": Array [],
-          "styles": Array [],
+          "marks": Array [],
         },
       ],
       "children": Array [],
-      "entityData": Object {},
       "key": "9",
       "text": "Six",
     },
   ],
+  "entityMap": undefined,
   "lastCommitted": null,
   "selection": Object {
     "endKey": "1",

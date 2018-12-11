@@ -5,80 +5,62 @@ Array [
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "1",
     "text": "Line One",
   },
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -99,72 +81,55 @@ Array [
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "1",
     "text": "Line OneLine Two",
   },
@@ -194,76 +159,59 @@ Array [
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "1",
     "text": "Lin One",
   },
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "2",
     "text": "Line Two",
   },
@@ -284,28 +232,22 @@ Array [
   Object {
     "characterData": Array [
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
       Object {
-        "entities": Array [],
-        "styles": Array [],
+        "marks": Array [],
       },
     ],
     "children": Array [],
-    "entityData": Object {},
     "key": "1",
     "text": "Lineo",
   },

@@ -6,6 +6,7 @@ import createBlock from './createBlock'
 
 const emptyState = {
   content: [],
+  entityMap: {},
   selection: {
     startKey: 'a',
     endKey: 'a',
@@ -18,7 +19,7 @@ const emptyState = {
 }
 
 const createEditorState = (rawContent: RawContentState): EditorState => {
-  const content = rawContent.map(createBlock)
+  const content = rawContent.blocks.map(createBlock)
 
   const key = content[0].key
   const selection = {
@@ -31,6 +32,7 @@ const createEditorState = (rawContent: RawContentState): EditorState => {
   const initialState = produce(emptyState,
     () => ({
       content,
+      entityMap: rawContent.entityMap,
       selection,
       changes: [],
       changeIndex: 0,

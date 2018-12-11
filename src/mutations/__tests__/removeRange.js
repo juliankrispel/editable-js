@@ -14,7 +14,7 @@ describe('removeRange', () => {
       endKey: '5'
     }
 
-    const initialState = [{
+    const initialState = { blocks: [{
       text: 'start ',
       key: '1',
       children: [{
@@ -47,12 +47,12 @@ describe('removeRange', () => {
     }, {
       text: 'Six',
       key: '9'
-    }]
+    }]}
 
     const newEditorState = commit(createEditorState(initialState), removeRange, selection)
 
     test('removes correct content', () => {
-      const expectedState = createEditorState([{
+      const expectedState = createEditorState({ blocks: [{
         text: 'start end',
         key: '1',
         children: [{
@@ -68,7 +68,7 @@ describe('removeRange', () => {
       }, {
         text: 'Six',
         key: '9'
-      }])
+      }]})
 
       expect(newEditorState.content).toEqual(expectedState.content)
     })
@@ -86,13 +86,13 @@ describe('removeRange', () => {
   })
 
   describe('when selection starts and ends at sibling', () => {
-    const initialState = createEditorState([{
+    const initialState = createEditorState({ blocks: [{
       text: 'start -----',
       key: '1'
     }, {
       text: '----- end',
       key: '2'
-    }])
+    }]})
 
     const selection: SelectionState = {
       startOffset: 5,
@@ -102,10 +102,10 @@ describe('removeRange', () => {
     }
 
     test('removes text fragments over multiple blocks correctly', () => {
-      const expectedState = createEditorState([{
+      const expectedState = createEditorState({ blocks: [{
         text: 'startend',
         key: '1'
-      }])
+      }]})
 
       const newEditorState = commit(initialState, removeRange, selection)
 
@@ -126,10 +126,10 @@ describe('removeRange', () => {
   })
 
   describe('when selection starts and ends in same block', () => {
-    const initialState = createEditorState([{
+    const initialState = createEditorState({ blocks: [{
       text: '0,1,A,2',
       key: '1'
-    }])
+    }]})
 
     const selection: SelectionState = {
       startOffset: 4,
@@ -141,10 +141,10 @@ describe('removeRange', () => {
     const newEditorState = commit(initialState, removeRange, selection)
 
     test('updates content correctly', () => {
-      const expectedState = createEditorState([{
+      const expectedState = createEditorState({ blocks: [{
         text: '0,1,2',
         key: '1'
-      }])
+      }]})
 
       expect(newEditorState.content).toEqual(expectedState.content)
     })

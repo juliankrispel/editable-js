@@ -30,7 +30,7 @@ describe('getBlockList', () => {
      *
      */
 
-    const { content } = createEditorState([{
+    const { content } = createEditorState({ blocks: [{
       text: 'One',
       children: [{
         text: 'Two',
@@ -40,7 +40,7 @@ describe('getBlockList', () => {
       }]
     }, {
       text: 'Four'
-    }])
+    }]})
 
     const expectedState = [{
       path: [0],
