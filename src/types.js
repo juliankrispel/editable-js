@@ -77,7 +77,7 @@ export type EditorState = {
   content: ContentState,
   entityMap: EntityMap,
   selection: SelectionState,
-  currentCharacterData?: CharacterData,
+  currentCharacterData: CharacterData,
   changes: Array<{
     forward: Array<Patch>,
     reverse: Array<Patch>,

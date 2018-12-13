@@ -10,6 +10,8 @@ import mergeBlock from './mergeBlock'
 import removeRange from './removeRange'
 import splitBlock from './splitBlock'
 import updateBlock from './updateBlock'
+import setCurrentCharacterData from './setCurrentCharacterData'
+import toggleCurrentMark from './toggleCurrentMark'
 import collapseSelectionToEnd from './collapseSelectionToEnd'
 import collapseSelectionToStart from './collapseSelectionToStart'
 import updateSelection from './updateSelection'
@@ -24,8 +26,10 @@ export {
   mergeBlock,
   removeRange,
   splitBlock,
+  toggleCurrentMark,
   updateBlock,
   collapseSelectionToEnd,
   collapseSelectionToStart,
-  updateSelection
+  updateSelection,
+  setCurrentCharacterData
 }

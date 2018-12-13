@@ -1,6 +1,6 @@
 // @flow
 
-import produce, { applyPatches} from 'immer'
+import produce, { applyPatches } from 'immer'
 
 import undo from './undo'
 import type { EditorState } from '../types'
@@ -14,6 +14,7 @@ const mergeLastCommit = (editorState: EditorState) => {
     prevEditorState,
     draft => {
       lastTwoChanges.forEach(change => {
+        // console.log('change', JSON.stringify(change))
         applyPatches(draft, change.forward)
       })
     }, (forward, reverse) => {

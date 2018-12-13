@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toggleCurrentMark toggles current mark 1`] = `
+Object {
+  "changeIndex": 1,
+  "changes": Array [
+    Object {
+      "forward": Array [
+        Object {
+          "op": "add",
+          "path": Array [
+            "currentCharacterData",
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+      ],
+      "reverse": Array [
+        Object {
+          "op": "replace",
+          "path": Array [
+            "currentCharacterData",
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+      ],
+    },
+  ],
+  "content": Array [
+    Object {
+      "characterData": Array [
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+      ],
+      "children": Array [],
+      "key": "1",
+      "text": "Hello World",
+    },
+  ],
+  "currentCharacterData": Object {
+    "entity": null,
+    "marks": Array [
+      "bold",
+    ],
+  },
+  "entityMap": undefined,
+  "lastCommitted": "toggleCurrentMark",
+  "selection": Object {
+    "endKey": "1",
+    "endOffset": 0,
+    "startKey": "1",
+    "startOffset": 0,
+  },
+}
+`;
+
+exports[`toggleCurrentMark toggles current mark 2`] = `
+Object {
+  "changeIndex": 1,
+  "changes": Array [
+    Object {
+      "forward": Array [
+        Object {
+          "op": "replace",
+          "path": Array [
+            "currentCharacterData",
+            "marks",
+          ],
+          "value": Array [],
+        },
+      ],
+      "reverse": Array [
+        Object {
+          "op": "replace",
+          "path": Array [
+            "currentCharacterData",
+            "marks",
+          ],
+          "value": Array [],
+        },
+      ],
+    },
+  ],
+  "content": Array [
+    Object {
+      "characterData": Array [
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+      ],
+      "children": Array [],
+      "key": "1",
+      "text": "Hello World",
+    },
+  ],
+  "currentCharacterData": Object {
+    "entity": null,
+    "marks": Array [],
+  },
+  "entityMap": undefined,
+  "lastCommitted": "toggleCurrentMark",
+  "selection": Object {
+    "endKey": "1",
+    "endOffset": 0,
+    "startKey": "1",
+    "startOffset": 0,
+  },
+}
+`;

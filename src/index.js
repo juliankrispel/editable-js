@@ -20,6 +20,7 @@ export {
   getBlockMap,
   getBlockMapInRange,
   getBlockParent,
+  getPreviousCharacterData,
   hasDescendant
 } from './queries'
 
@@ -43,10 +44,12 @@ export {
   insertText,
   replaceText,
   mergeBlock,
+  toggleCurrentMark,
   removeRange,
   splitBlock,
   updateBlock,
   collapseSelectionToEnd,
   collapseSelectionToStart,
-  updateSelection
+  updateSelection,
+  setCurrentCharacterData
 } from './mutations'

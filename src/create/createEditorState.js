@@ -15,6 +15,7 @@ const emptyState = {
   },
   changes: [],
   changeIndex: -1,
+  currentCharacterData: {},
   lastCommitted: null
 }
 
@@ -36,6 +37,10 @@ const createEditorState = (rawContent: RawContentState): EditorState => {
       selection,
       changes: [],
       changeIndex: 0,
+      currentCharacterData: {
+        marks: [],
+        entity: null
+      },
       lastCommitted: null
     }))
 

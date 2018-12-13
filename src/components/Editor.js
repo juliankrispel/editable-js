@@ -2,12 +2,15 @@
 
 import React, { Fragment, Component, createRef } from 'react'
 import type { Node, TextFragment } from 'react'
+import produce from 'immer'
 
 import { getDomSelection, setDomSelection } from '../selection'
 import handleKeyDown from '../handleKeyDown'
 import shallowEqual from '../shallowEqual'
 import { createTextFragments } from '../create'
 import type { EditorState, Block } from '../types'
+import { getPreviousCharacterData } from '../queries'
+import hasEqualCharacterData from '../hasEqualCharacterData'
 
 type Props = {
   onChange: EditorState => void,
@@ -23,6 +26,7 @@ const editorStyles = {
   outline: 'none'
 }
 
+/*
 const blockStyles = {
   outline: 'none',
   userSelect: 'text',
@@ -31,6 +35,7 @@ const blockStyles = {
   position: 'relative',
   overflowWrap: 'break-word'
 }
+*/
 
 export default class Editor extends Component<Props> {
   ref = createRef()
@@ -108,10 +113,15 @@ export default class Editor extends Component<Props> {
     const domSelection = getDomSelection(editorState)
 
     if (domSelection != null && !shallowEqual(selection, domSelection)) {
-      onChange({
-        ...editorState,
-        selection: domSelection
-      })
+      onChange(produce(editorState, draft => {
+        const previousCharacterData = getPreviousCharacterData(editorState.content, domSelection)
+
+        if (!hasEqualCharacterData(previousCharacterData, editorState.currentCharacterData)) {
+          draft.currentCharacterData = previousCharacterData
+        }
+
+        draft.selection = domSelection
+      }))
     }
   }
 

@@ -73,6 +73,10 @@ Object {
       "text": "hello my friend",
     },
   ],
+  "currentCharacterData": Object {
+    "entity": null,
+    "marks": Array [],
+  },
   "entityMap": undefined,
   "lastCommitted": null,
   "selection": Object {
@@ -274,6 +278,10 @@ Object {
       "text": "Six",
     },
   ],
+  "currentCharacterData": Object {
+    "entity": null,
+    "marks": Array [],
+  },
   "entityMap": undefined,
   "lastCommitted": null,
   "selection": Object {

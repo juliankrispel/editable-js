@@ -1,0 +1,303 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`updateCharacterData updates character data at given range 1`] = `
+Object {
+  "changeIndex": 1,
+  "changes": Array [
+    Object {
+      "forward": Array [
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "characterData",
+            2,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            0,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            1,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            2,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            0,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            1,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+        Object {
+          "op": "add",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            2,
+            "marks",
+            0,
+          ],
+          "value": "bold",
+        },
+      ],
+      "reverse": Array [
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "characterData",
+            2,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            0,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            1,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "characterData",
+            2,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            0,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            1,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+        Object {
+          "op": "replace",
+          "path": Array [
+            "content",
+            0,
+            "children",
+            0,
+            "children",
+            0,
+            "characterData",
+            2,
+            "marks",
+            "length",
+          ],
+          "value": 0,
+        },
+      ],
+    },
+  ],
+  "content": Array [
+    Object {
+      "characterData": Array [
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [],
+        },
+        Object {
+          "marks": Array [
+            "bold",
+          ],
+        },
+      ],
+      "children": Array [
+        Object {
+          "characterData": Array [
+            Object {
+              "marks": Array [
+                "bold",
+              ],
+            },
+            Object {
+              "marks": Array [
+                "bold",
+              ],
+            },
+            Object {
+              "marks": Array [
+                "bold",
+              ],
+            },
+          ],
+          "children": Array [
+            Object {
+              "characterData": Array [
+                Object {
+                  "marks": Array [
+                    "bold",
+                  ],
+                },
+                Object {
+                  "marks": Array [
+                    "bold",
+                  ],
+                },
+                Object {
+                  "marks": Array [
+                    "bold",
+                  ],
+                },
+                Object {
+                  "marks": Array [],
+                },
+                Object {
+                  "marks": Array [],
+                },
+              ],
+              "children": Array [],
+              "key": "3",
+              "text": "Three",
+            },
+          ],
+          "key": "2",
+          "text": "Two",
+        },
+      ],
+      "key": "1",
+      "text": "One",
+    },
+  ],
+  "currentCharacterData": Object {
+    "entity": null,
+    "marks": Array [],
+  },
+  "entityMap": undefined,
+  "lastCommitted": "updateCharacterData",
+  "selection": Object {
+    "endKey": "1",
+    "endOffset": 0,
+    "startKey": "1",
+    "startOffset": 0,
+  },
+}
+`;

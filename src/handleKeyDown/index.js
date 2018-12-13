@@ -57,7 +57,8 @@ export default function handleKeyDown (editorState: EditorState, event: Syntheti
   } else if (event.key === 'Delete') {
     newEditorState = commit(editorState, handleDelete)
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
-    newEditorState = commit(editorState, insertText, editorState.selection, event.key)
+    console.log('yo', editorState.currentCharacterData)
+    newEditorState = commit(editorState, insertText, editorState.selection, event.key, editorState.currentCharacterData)
   } else if (isCharacterInsert(event)) {
     newEditorState = commit(editorState, replaceText, editorState.selection, event.key)
   }
