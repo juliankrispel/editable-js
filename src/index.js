@@ -1,6 +1,11 @@
 // @flow
 
-export { Editor } from './components'
+export {
+  Editor,
+  EditorBlock,
+  EditorText,
+  EditorBlockChildren
+} from './components'
 
 export {
   createBlock,
@@ -21,7 +26,9 @@ export {
   getBlockMapInRange,
   getBlockParent,
   getPreviousCharacterData,
-  hasDescendant
+  hasDescendant,
+  hasMark,
+  hasBlockType
 } from './queries'
 
 export {
@@ -44,9 +51,10 @@ export {
   insertText,
   replaceText,
   mergeBlock,
-  toggleCurrentMark,
   removeRange,
   splitBlock,
+  toggleCurrentMark,
+  toggleBlockType,
   updateBlock,
   collapseSelectionToEnd,
   collapseSelectionToStart,

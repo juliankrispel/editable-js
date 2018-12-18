@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toggleBlockType adds block type when it is not in range 1`] = `
+Array [
+  Object {
+    "characterData": Array [
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+    ],
+    "children": Array [
+      Object {
+        "characterData": Array [
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+        ],
+        "children": Array [],
+        "key": "2",
+        "text": "World",
+        "type": "code",
+      },
+    ],
+    "key": "1",
+    "text": "Hello",
+    "type": "code",
+  },
+]
+`;
+
+exports[`toggleBlockType removes block type when it is already in range 1`] = `
+Array [
+  Object {
+    "characterData": Array [
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+    ],
+    "children": Array [
+      Object {
+        "characterData": Array [
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+        ],
+        "children": Array [],
+        "key": "2",
+        "text": "World",
+      },
+    ],
+    "key": "1",
+    "text": "Hello",
+  },
+]
+`;

@@ -23,12 +23,14 @@ import handleDelete from './handleDelete'
 
 import type { EditorState } from '../types'
 
+const actionKeys = ['Backspace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab', 'Escape', 'CapsLock']
+
 const isCharacterInsert = (e: SyntheticKeyboardEvent<*>) =>
   !e.altKey &&
   !e.metaKey &&
   !e.ctrlKey &&
   !e.key.includes('Arrow') &&
-  !['Backspace', 'Delete', 'Meta', 'Alt', 'Enter', 'Control', 'Shift', 'Tab'].includes(e.key)
+  !actionKeys.includes(e.key)
 
 const isUndo = (e: SyntheticKeyboardEvent<*>) => !e.shiftKey && e.metaKey && e.key === 'z'
 const isRedo = (e: SyntheticKeyboardEvent<*>) => e.shiftKey && e.metaKey && e.key === 'z'
@@ -57,7 +59,6 @@ export default function handleKeyDown (editorState: EditorState, event: Syntheti
   } else if (event.key === 'Delete') {
     newEditorState = commit(editorState, handleDelete)
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
-    console.log('yo', editorState.currentCharacterData)
     newEditorState = commit(editorState, insertText, editorState.selection, event.key, editorState.currentCharacterData)
   } else if (isCharacterInsert(event)) {
     newEditorState = commit(editorState, replaceText, editorState.selection, event.key)

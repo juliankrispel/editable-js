@@ -1,22 +1,28 @@
 // @flow
 
 import React, { Fragment, Component, createRef } from 'react'
-import type { Node, TextFragment } from 'react'
+import type { Node } from 'react'
 import produce from 'immer'
 
+import EditorContext from './EditorContext'
 import { getDomSelection, setDomSelection } from '../selection'
 import handleKeyDown from '../handleKeyDown'
 import shallowEqual from '../shallowEqual'
 import { createTextFragments } from '../create'
-import type { EditorState, Block } from '../types'
+import type { TextFragment, EditorState, Block } from '../types'
 import { getPreviousCharacterData } from '../queries'
 import hasEqualCharacterData from '../hasEqualCharacterData'
+import EditorBlockChildren from './EditorBlockChildren'
+import EditorBlock from './EditorBlock'
+
+type RenderFragment = ({ fragment: TextFragment, children: Node }) => Node
+type RenderBlock = ({ block: Block }) => Node
 
 type Props = {
   onChange: EditorState => void,
   editorState: EditorState,
-  renderBlock?: ({ block: Block, children: Node }) => Node,
-  renderFragment?: ({ fragment: TextFragment, children: Node }) => Node
+  renderBlock?: RenderBlock,
+  renderFragment?: RenderFragment
 }
 
 const editorStyles = {
@@ -39,6 +45,10 @@ const blockStyles = {
 
 export default class Editor extends Component<Props> {
   ref = createRef()
+
+  static defaultProps = {
+    renderBlock: EditorBlock
+  }
 
   onKeyDown = (event: SyntheticKeyboardEvent<*>): void => {
     const { editorState, onChange } = this.props
@@ -128,15 +138,24 @@ export default class Editor extends Component<Props> {
   render() {
     const { editorState: { content } } = this.props
 
-    return <div
-      ref={this.ref}
-      style={editorStyles}
-      onMouseUp={this.handleSelectionChange}
-      suppressContentEditableWarning
-      contentEditable
-      onSelect={this.handleSelectionChange}
-      onKeyDown={this.onKeyDown}>
-      {content.map(this.renderBlock)}
-    </div>
+    const contextProps = {
+      editorState: this.props.editorState,
+      renderFragment: this.props.renderFragment,
+      renderBlock: this.props.renderBlock
+    }
+
+    return <EditorContext.Provider
+      value={contextProps}>
+      <div
+        ref={this.ref}
+        style={editorStyles}
+        onMouseUp={this.handleSelectionChange}
+        suppressContentEditableWarning
+        contentEditable
+        onSelect={this.handleSelectionChange}
+        onKeyDown={this.onKeyDown}>
+        <EditorBlockChildren content={content} />
+      </div>
+    </EditorContext.Provider>
   }
 }

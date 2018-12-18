@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Editor, createEditorState } from 'editable-js'
+import {
+  Editor,
+  EditorBlockChildren,
+  EditorText,
+  createEditorState
+} from 'editable-js'
 
 export default class App extends Component {
   state = {
@@ -44,13 +49,16 @@ export default class App extends Component {
         }}
         renderBlock={({ block, children }) => {
           if (block.type === 'table') {
-            return <table><tbody>{children}</tbody></table>
+            return <table><tbody><EditorBlockChildren /></tbody></table>
           } else if (block.type === 'row') {
-            return <tr>{children}</tr>
+            return <tr><EditorBlockChildren /></tr>
           } else if (block.type === 'cell') {
-            return <td>{children}</td>
+            return <td><EditorText /></td>
           }
-          return children
+          return <div>
+            <EditorText />
+            <EditorBlockChildren />
+          </div>
         }}
         editorState={this.state.editorState}
       />

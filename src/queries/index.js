@@ -13,6 +13,7 @@ import getBlockMapInRange from './getBlockMapInRange'
 import getBlockParent from './getBlockParent'
 import hasDescendant from './hasDescendant'
 import hasMark from './hasMark'
+import hasBlockType from './hasBlockType'
 
 export {
   getBlock,
@@ -27,5 +28,6 @@ export {
   getBlockParent,
   getPreviousCharacterData,
   hasDescendant,
-  hasMark
+  hasMark,
+  hasBlockType
 }

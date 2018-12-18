@@ -12,6 +12,7 @@ import splitBlock from './splitBlock'
 import updateBlock from './updateBlock'
 import setCurrentCharacterData from './setCurrentCharacterData'
 import toggleCurrentMark from './toggleCurrentMark'
+import toggleBlockType from './toggleBlockType'
 import collapseSelectionToEnd from './collapseSelectionToEnd'
 import collapseSelectionToStart from './collapseSelectionToStart'
 import updateSelection from './updateSelection'
@@ -27,6 +28,7 @@ export {
   removeRange,
   splitBlock,
   toggleCurrentMark,
+  toggleBlockType,
   updateBlock,
   collapseSelectionToEnd,
   collapseSelectionToStart,

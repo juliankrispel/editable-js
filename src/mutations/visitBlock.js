@@ -3,11 +3,14 @@
 import type { EditorState, Block } from '../types'
 import { getBlock } from '../queries'
 
-export default function updateBlock(
+export default function visitBlock(
   editorState: EditorState,
   key: string,
-  blockUpdate: $Shape<Block>
+  blockUpdate: (block: Block) => void
 ) {
   const block = getBlock(editorState.content, key)
-  Object.assign(block, blockUpdate)
+
+  if (block != null) {
+    blockUpdate(block)
+  }
 }
