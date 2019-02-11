@@ -33,7 +33,15 @@ const config = {
         'node_modules/process-es6/**'
       ],
       namedExports: {
-        'node_modules/react/index.js': ['Fragment', 'Children', 'Component', 'PropTypes', 'createElement', 'createRef'],
+        'node_modules/react/index.js': [
+          'Fragment',
+          'Children',
+          'Component',
+          'PropTypes',
+          'createElement',
+          'createRef',
+          'useContext'
+        ],
         'node_modules/react-dom/index.js': ['render']
       }
     })

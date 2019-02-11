@@ -9,14 +9,16 @@ import { getDomSelection, setDomSelection } from '../selection'
 import handleKeyDown from '../handleKeyDown'
 import shallowEqual from '../shallowEqual'
 import { createTextFragments } from '../create'
-import type { TextFragment, EditorState, Block } from '../types'
+import type {
+  RenderFragment,
+  RenderBlock,
+  EditorState,
+  Block
+} from '../types'
 import { getPreviousCharacterData } from '../queries'
 import hasEqualCharacterData from '../hasEqualCharacterData'
 import EditorBlockChildren from './EditorBlockChildren'
 import EditorBlock from './EditorBlock'
-
-type RenderFragment = ({ fragment: TextFragment, children: Node }) => Node
-type RenderBlock = ({ block: Block }) => Node
 
 type Props = {
   onChange: EditorState => void,

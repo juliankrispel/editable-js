@@ -6,6 +6,14 @@
     "@babel/flow",
     "@babel/react"
   ],
+  "env": {
+    "test": {
+      "presets": [
+      ["@babel/env"],
+      "@babel/flow",
+      "@babel/react"]
+    }
+  },
   "plugins": [
     "@babel/proposal-class-properties"
   ]

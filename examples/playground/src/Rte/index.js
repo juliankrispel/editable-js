@@ -3,10 +3,8 @@ import {
   Editor,
   EditorBlockChildren,
   EditorText,
-  createEditorState,
-  toggleCurrentMark,
-  commit
-} from 'editable-js'
+  createEditorState
+} from 'zettel'
 import MarkButton from './MarkButton'
 import BlockButton from './BlockButton'
 
@@ -40,13 +38,13 @@ export default class App extends Component {
 
     return (
       <div>
-        <div className="button-bar">
-          <MarkButton {...buttonProps} mark="bold">B</MarkButton>
-          <MarkButton {...buttonProps} mark="italic">I</MarkButton>
-          <MarkButton {...buttonProps} mark="large">Large</MarkButton>
-          <MarkButton {...buttonProps} mark="small">Small</MarkButton>
-          <BlockButton {...buttonProps} type="header-one">H1</BlockButton>
-          <BlockButton {...buttonProps} type="code">Code</BlockButton>
+        <div className='button-bar'>
+          <MarkButton {...buttonProps} mark='bold'>B</MarkButton>
+          <MarkButton {...buttonProps} mark='italic'>I</MarkButton>
+          <MarkButton {...buttonProps} mark='large'>Large</MarkButton>
+          <MarkButton {...buttonProps} mark='small'>Small</MarkButton>
+          <BlockButton {...buttonProps} type='header-one'>H1</BlockButton>
+          <BlockButton {...buttonProps} type='code'>Code</BlockButton>
         </div>
         <Editor
           onChange={this.onChange}

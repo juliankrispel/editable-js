@@ -2,21 +2,26 @@
 
 import React, { useContext } from 'react'
 import EditorContext from './EditorContext'
-import type { Block } from '../types'
+import type { RenderFragment, RenderBlock, Block } from '../types'
 
 type Props = {
-  content?: Array<Block>
+  content?: Array<Block>,
+  renderFragment?: RenderFragment,
+  renderBlock: RenderBlock
 }
 
 export default function EditorBlockChildren({
-  content
+  content,
+  ...props
 }: Props) {
   const {
     block,
     editorState,
-    renderFragment,
-    renderBlock
+    ...contextProps
   } = useContext(EditorContext)
+
+  const renderFragment = props.renderFragment || contextProps.renderFragment
+  const renderBlock = props.renderBlock || contextProps.renderBlock
 
   const EditorBlock = renderBlock
 

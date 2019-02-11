@@ -13,7 +13,6 @@ export default function EditorText() {
 
   const { key, text } = block
   let textFragments = text
-  console.log('yo', editorState)
 
   if (text != null && text.length > 0) {
     const fragments = createTextFragments(block, editorState.entityMap)

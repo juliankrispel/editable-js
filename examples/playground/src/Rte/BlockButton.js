@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
+
 import React from 'react'
-import { commit, toggleBlockType, hasBlockType } from 'editable-js'
+import { commit, toggleBlockType, hasBlockType } from 'zettel'
 
 export default function BlockButton({
   editorState,

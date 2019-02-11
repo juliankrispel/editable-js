@@ -1,5 +1,5 @@
 import React from 'react'
-import { commit, toggleCurrentMark, hasMark, isCollapsed } from 'editable-js'
+import { commit, toggleCurrentMark, hasMark, isCollapsed } from 'zettel'
 
 export default function Button({
   editorState,

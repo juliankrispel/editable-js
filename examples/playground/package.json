@@ -1,15 +1,15 @@
 {
-  "name": "editable-js-example",
+  "name": "zettel-example",
   "homepage": "https://juliankrispel.github.io/editable-js",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "editable-js": "link:..",
+    "zettel": "0.0.1",
     "prop-types": "^15.6.1",
-    "react": "^16.7.0-alpha.2",
+    "react": "^16.8.0-alpha.1",
     "react-dom": "^16.7.0-alpha.2",
-    "react-scripts": "^2.1.1"
+    "react-scripts": "^2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

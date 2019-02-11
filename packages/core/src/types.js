@@ -85,3 +85,7 @@ export type EditorState = {
   changeIndex: number,
   lastCommitted: ?string
 }
+
+export type RenderFragment = ({ fragment: TextFragment, children: Node }) => Node
+
+export type RenderBlock = ({ block: Block }) => Node

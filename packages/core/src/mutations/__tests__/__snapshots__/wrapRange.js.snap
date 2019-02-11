@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wrapRange wraps children into new block 1`] = `
+Array [
+  Object {
+    "characterData": Array [
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+      Object {
+        "marks": Array [],
+      },
+    ],
+    "children": Array [],
+    "key": "1",
+    "text": "One",
+  },
+  Object {
+    "characterData": Array [],
+    "children": Array [
+      Object {
+        "characterData": Array [
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+        ],
+        "children": Array [],
+        "key": "2",
+        "text": "Two",
+      },
+      Object {
+        "characterData": Array [
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+          Object {
+            "marks": Array [],
+          },
+        ],
+        "children": Array [],
+        "key": "3",
+        "text": "Three",
+      },
+    ],
+    "key": "4",
+    "text": "",
+    "type": "ordered-list",
+  },
+]
+`;
