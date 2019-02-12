@@ -8,7 +8,7 @@ export default function EditorText() {
   const {
     block,
     editorState,
-    renderFragment
+    renderFragment: RenderFragment
   } = useContext(EditorContext)
 
   const { key, text } = block
@@ -21,13 +21,14 @@ export default function EditorText() {
 
     textFragments = fragments.map(fragment => {
       let textFragment = <span
+        key={key}
         data-block-key={key}
         data-fragment-start={offset}
         data-fragment-end={offset + fragment.text.length}
       >{fragment.text || <br />}</span>
 
-      if (renderFragment) {
-        textFragment = renderFragment({ children: textFragment, fragment })
+      if (RenderFragment) {
+        textFragment = <RenderFragment key={key} fragment={fragment}>{textFragment}</RenderFragment>
       }
 
       offset += fragment.text.length
@@ -35,6 +36,7 @@ export default function EditorText() {
     })
   } else {
     textFragments = <span
+      key={key}
       data-block-key={key}
       data-fragment-start={0}
       data-fragment-end={0}

@@ -37,9 +37,10 @@ export default function EditorBlockChildren({
           block: child
         }
 
-        return <EditorContext.Provider value={value}>
+        return <EditorContext.Provider
+          key={child.key}
+          value={value}>
           <EditorBlock
-            key={child.key}
             block={child}
             editorState={editorState}
             renderFragment={renderFragment}
