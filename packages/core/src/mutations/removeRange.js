@@ -37,8 +37,6 @@ export default function removeRange(
   const last = blockList.slice(-1)[0]
   const between = blockList.slice(1, -1)
   const betweenKeys = between.map(block => block.key)
-  const betweenText = between.map(block => block.block.text)
-  console.log('delete', betweenKeys, betweenText)
 
   // 2. Delete Selected text
   last.block.text = last.block.text.slice(selection.endOffset)

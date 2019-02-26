@@ -128,10 +128,10 @@ describe('removeRange', () => {
   describe('when selection starts at 1 and ends at 4', () => {
     const initialState = createEditorState({ blocks: [{
       text: 'Zero',
-      key: '0'
+      key: '00'
     }, {
       text: 'start -----',
-      key: '1'
+      key: '01'
     }, {
       text: 'Two',
       key: '9wqdwqd21ca'
@@ -140,29 +140,29 @@ describe('removeRange', () => {
       key: '1jd21h8f3hj'
     }, {
       text: '----- end',
-      key: '4'
+      key: '04'
     }, {
       text: 'Five',
-      key: '5'
+      key: '05'
     }]})
 
     const selection: SelectionState = {
       startOffset: 5,
-      startKey: '1',
+      startKey: '01',
       endOffset: 6,
-      endKey: '4'
+      endKey: '04'
     }
 
     test('removes text fragments over multiple blocks correctly', () => {
       const expectedState = createEditorState({ blocks: [{
         text: 'Zero',
-        key: '0'
+        key: '00'
       }, {
         text: 'startend',
-        key: '1'
+        key: '01'
       }, {
         text: 'Five',
-        key: '5'
+        key: '05'
       }]})
 
       const newEditorState = commit(initialState, removeRange, selection)
@@ -173,9 +173,9 @@ describe('removeRange', () => {
     test('collapses selection to start', () => {
       const expectedSelection = {
         startOffset: 5,
-        startKey: '1',
+        startKey: '01',
         endOffset: 5,
-        endKey: '1'
+        endKey: '01'
       }
 
       const newEditorState = commit(initialState, removeRange, selection)

@@ -19,8 +19,6 @@ export default function EditorText() {
 
     let offset = 0
 
-    console.log('EditorText.block.key', key)
-
     textFragments = fragments.map(fragment => {
       let textFragment = <span
         key={key}
