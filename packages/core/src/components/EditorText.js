@@ -19,6 +19,8 @@ export default function EditorText() {
 
     let offset = 0
 
+    console.log('EditorText.block.key', key)
+
     textFragments = fragments.map(fragment => {
       let textFragment = <span
         key={key}
@@ -28,7 +30,7 @@ export default function EditorText() {
       >{fragment.text || <br />}</span>
 
       if (RenderFragment) {
-        textFragment = <RenderFragment key={key} fragment={fragment}>{textFragment}</RenderFragment>
+        textFragment = <RenderFragment data-block-key={key} key={key} fragment={fragment}>{textFragment}</RenderFragment>
       }
 
       offset += fragment.text.length

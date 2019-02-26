@@ -1,6 +1,6 @@
 // @flow
 
-function creatUID(): string {
+function createUID(): string {
   let firstPart = (Math.random() * 46656) | 0
   let secondPart = (Math.random() * 46656) | 0
   firstPart = ('000' + firstPart.toString(36)).slice(-3)
@@ -8,4 +8,4 @@ function creatUID(): string {
   return firstPart + secondPart
 }
 
-export default creatUID
+export default createUID

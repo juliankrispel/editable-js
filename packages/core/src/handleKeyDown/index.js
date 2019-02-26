@@ -37,12 +37,7 @@ const isRedo = (e: SyntheticKeyboardEvent<*>) => e.shiftKey && e.metaKey && e.ke
 
 export default function handleKeyDown (editorState: EditorState, event: SyntheticKeyboardEvent<*>): EditorState {
   let newEditorState = null
-
-  //   console.log({
-  //     'event.metaKey': event.metaKey,
-  //     'event.ctrlKey': event.ctrlKey,
-  //     'event.altKey': event.altKey
-  //   })
+  console.log('handle key down')
 
   if (isUndo(event)) {
     newEditorState = undo(editorState)
@@ -61,6 +56,7 @@ export default function handleKeyDown (editorState: EditorState, event: Syntheti
   } else if (isCharacterInsert(event) && isCollapsed(editorState.selection)) {
     newEditorState = commit(editorState, insertText, editorState.selection, event.key, editorState.currentCharacterData)
   } else if (isCharacterInsert(event)) {
+    console.log('replace yo', editorState.selection)
     newEditorState = commit(editorState, replaceText, editorState.selection, event.key)
   }
 

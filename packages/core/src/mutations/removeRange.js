@@ -4,6 +4,7 @@ import { getBlockListInRange, getBlock } from '../queries'
 import mergeBlock from './mergeBlock'
 import collapseSelectionToStart from './collapseSelectionToStart'
 import collapseBlock from './collapseBlock'
+import deleteBlock from './deleteBlock'
 
 export default function removeRange(
   editorState: EditorState,
@@ -35,6 +36,9 @@ export default function removeRange(
   const first = blockList[0]
   const last = blockList.slice(-1)[0]
   const between = blockList.slice(1, -1)
+  const betweenKeys = between.map(block => block.key)
+  const betweenText = between.map(block => block.block.text)
+  console.log('delete', betweenKeys, betweenText)
 
   // 2. Delete Selected text
   last.block.text = last.block.text.slice(selection.endOffset)
@@ -54,7 +58,10 @@ export default function removeRange(
   // 4. collapse blocks in between start and end key in reverse
   between.reverse().forEach(block => collapseBlock(editorState, block.key))
 
-  // 5. Clean up selection
+  // 5. delete blocks in between
+  betweenKeys.forEach(key => deleteBlock(editorState, key))
+
+  // 6. Clean up selection
   Object.assign(editorState.selection, selection)
   collapseSelectionToStart(editorState)
 }

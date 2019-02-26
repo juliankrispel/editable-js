@@ -60,9 +60,7 @@ export default class Editor extends Component<Props> {
   componentDidUpdate() {
     const { editorState } = this.props
     if (editorState.selection != null && this.ref.current != null) {
-      setDomSelection(this.ref.current, this.props.editorState.selection)
-    } else {
-      console.log('editor selection is null')
+      setDomSelection(this.ref.current, editorState.selection)
     }
   }
 
@@ -71,13 +69,11 @@ export default class Editor extends Component<Props> {
     let textNode = text || <br />
 
     if (text != null && text.length > 0) {
-      console.log('has text', text, 'boing')
       const fragments = createTextFragments(block, this.props.editorState.entityMap)
 
       let offset = 0
 
       textNode = fragments.map(fragment => {
-        console.log('yo', fragment.text.length)
         let textFragment = <span
           data-block-key={key}
           data-fragment-start={offset}
@@ -90,7 +86,6 @@ export default class Editor extends Component<Props> {
         return textFragment
       })
     } else {
-      console.log('does not have text')
       textNode = <span
         data-block-key={key}
         data-fragment-start={0}

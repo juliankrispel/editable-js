@@ -1,5 +1,5 @@
 {
-  "name": "zettel",
+  "name": "@zettel/core",
   "version": "0.0.1",
   "description": "A framework for rich text editing",
   "author": "juliankrispel",

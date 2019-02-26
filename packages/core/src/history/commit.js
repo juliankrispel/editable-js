@@ -14,7 +14,6 @@ const mergeLastCommit = (editorState: EditorState) => {
     prevEditorState,
     draft => {
       lastTwoChanges.forEach(change => {
-        // console.log('change', JSON.stringify(change))
         applyPatches(draft, change.forward)
       })
     }, (forward, reverse) => {
