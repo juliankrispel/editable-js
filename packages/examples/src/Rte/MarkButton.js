@@ -11,7 +11,7 @@ export default function Button({
   if (isCollapsed(editorState.selection)) {
     isActive = editorState.currentCharacterData && editorState.currentCharacterData.marks.includes(mark)
   }
-    
+
   return <button
     className={`button ${isActive ? 'active' : ''}`}
     onClick={() => onChange(commit(editorState, toggleCurrentMark, mark))}

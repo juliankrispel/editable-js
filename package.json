@@ -2,7 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "setup": "yarn lerna bootstrap --hoist"
+    "start": "lerna run --parallel start",
+    "prep": "lerna clean && lerna bootstrap --hoist"
   },
   "devDependencies": {
     "lerna": "^3.11.0"

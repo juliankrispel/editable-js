@@ -133,7 +133,13 @@ export default class Editor extends Component<Props> {
   }
 
   render() {
-    const { editorState: { content } } = this.props
+    const { editorState } = this.props
+
+    if (!editorState) {
+      throw new Error('editorState prop must be defined')
+    }
+
+    const content = editorState.content
 
     const contextProps = {
       editorState: this.props.editorState,
